@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <script>
+        const atividades = {
+            "Apuração": {
+                "Federal": {
+                    "Ekoga": ["Apuração PIS/COFINS", "INSS PJ/PF", "Apuração IRRF/PCC", "Apuração INSS RF"],
+                    "Manaus": ["Apuração PIS/COFINS", "IPI", "Apuração IRRF/PCC", "Apuração INSS RF"],
+                    "Misa": ["Apuração IRRF/PCC", "Apuração INSS RF", "IPI – Aços", "IPI – Sede", "IPI – Três Corações", "Títulos liquidados (F600)"],
+                    "Tecnopar": ["Apuração IRRF/PCC", "Apuração INSS RF"],
+                    "Todas": []
+                },
+                "Estadual": {
+                    "Ekoga": ["ICMS Próprio, DIFAL"],
+                    "Manaus": ["ICMS Próprio, DIFAL"],
+                    "Misa": ["Apuração Energia Elétrica", "ICMS Próprio, DIFAL - Três Corações", "ICMS Próprio, DIFAL - E-commerce", "ICMS Próprio, DIFAL - Goiânia", "ICMS Próprio, DIFAL - Aços", "ICMS Próprio, DIFAL - Paulínia", "ICMS Próprio, DIFAL - Sede", "ICMS Próprio, DIFAL - Três Corações", "Pagamento Taxa Regime Especial"],
+                    "Tecnopar": [], "Todas": []
+                },
+                "Municipal": {
+                    "Ekoga": ["ISS"],
+                    "Manaus": ["ISS"],
+                    "Misa": ["ISS - Aços", "ISS – Goiânia", "ISS – M.S.A", "ISS – Paulínia", "ISS - Sede", "ISS - Shorewood", "ISS – Três Corações"],
+                    "Tecnopar": ["ISS – Tecnopar"],
+                    "Todas": []
+                }
+            },
+            "Conciliação": {
+                "Federal": {
+                    "Ekoga": ["Conciliação PIS/COFINS", "Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Manaus": ["Conciliação IPI", "Conciliação PIS/COFINS", "Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Misa": ["Conciliação IPI", "Conciliação PIS/COFINS", "Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Tecnopar": ["Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Todas": []
+                },
+                "Estadual": {
+                    "Ekoga": ["Conciliação ICMS"],
+                    "Manaus": ["Conciliação ICMS"],
+                    "Misa": ["Conciliação ICMS"],
+                    "Tecnopar": [],
+                    "Todas": []
+                },
+                "Municipal": {
+                    "Ekoga": ["Conciliação ISS"],
+                    "Manaus": ["Conciliação ISS"],
+                    "Misa": ["Conciliação – ISS"],
+                    "Tecnopar": [],
+                    "Todas": []
+                }
+            },
+            "Declaração": {
+                "Federal": {
+                    "Ekoga": ["DCTF", "DIRF", "EFD PIS/COFINS", "Refis", "Reinf"],
+                    "Manaus": ["DCTF", "DIRF", "EFD PIS/COFINS", "PERDCOMP PIS/COFINS", "REINF", "REINTEGRA"],
+                    "Misa": ["DCTF", "DIRF", "EFD PIS/COFINS", "PERDCOMP PIS/COFINS", "REINF", "REINTEGRA"],
+                    "Tecnopar": [],
+                    "Todas": ["Conf. de Livros Fiscais Entrada", "Conf. de Livros Fiscais Saída", "Conf. de PIS/COFINS", "Conf. Notas de Serviços"]
+                },
+                "Estadual": {
+                    "Ekoga": ["SPED Fiscal"],
+                    "Manaus": ["DAM", "Dia", "Pesquisa IBGE", "Questionário SUDAM", "SPED Fiscal"],
+                    "Misa": ["DAPI", "FCI", "FIEMG", "PROGRAMA NOS CONFORMES / RANKING TOYOTA - Mangels SP", "REGULARIZE ICMS (ENERGIA ELETRICA/TARGET) - Três Corações", "SPED FISCAL - Aços", "SPED FISCAL - E-commerce", "SPED FISCAL - Goiânia", "SPED FISCAL – Sede", "SPED FISCAL - Três Corações", "VAF DAMEF - E-commerce", "SPED FISCAL - Paulínia", "VAF DAMEF - Sede", "VAF DAMEF - Três Corações"],
+                    "Tecnopar": [],
+                    "Todas": []
+                },
+                "Municipal": {
+                    "Ekoga": [],
+                    "Manaus": [],
+                    "Misa": [],
+                    "Tecnopar": [],
+                    "Todas": []
+                }
+            }
+        };
+
+        let currentMenu = [];
+        let selectedActivity = {};
+
+        function updateMenu(title, level) {
+            let menuItems = document.getElementById('menuItems');
+            menuItems.innerHTML = '';
+
+            const backButton = document.createElement('div');
+            const titleElement = document.createElement('div');
+            backButton.classList.add('menu-item');
+            backButton.innerText = 'Voltar';
+            backButton.onclick = () => {
+                currentMenu.pop();
+                if (currentMenu.length > 0) {
+                    updateMenu(currentMenu[currentMenu.length - 1].title, currentMenu[currentMenu.length - 1].level);
+                } else {
+                    menuItems.style.display = 'none';
+                }
+            };
+
+            const logoutButton = document.createElement('div');
+            logoutButton.classList.add('menu-item');
+            logoutButton.innerText = 'Sair';
+            logoutButton.onclick = () => {
+                logout();
+            };
+
+            titleElement.classList.add('menu-title');
+            titleElement.innerText = title;
+
+            if (level === 0) {
+                menuItems.appendChild(logoutButton); // Adicionar botão "Sair" apenas no menu principal
+                for (let item in atividades) {
+                    const menuItem = document.createElement('div');
+                    menuItem.classList.add('menu-item');
+                    menuItem.innerText = item;
+                    menuItem.onclick = () => {
+                        currentMenu.push({ title: item, level: 1 });
+                        updateMenu(item, 1);
+                    };
+                    menuItems.appendChild(menuItem);
+                }
+            } else {
+                if (currentMenu.length > 0) {
+                    menuItems.appendChild(backButton);
+                }
+                menuItems.appendChild(titleElement);
+
+                if (level === 1) {
+                    const subMenus = atividades[title];
+                    for (let subMenu in subMenus) {
+                        const menuItem = document.createElement('div');
+                        menuItem.classList.add('menu-item');
+                        menuItem.innerText = subMenu;
+                        menuItem.onclick = () => {
+                            currentMenu.push({ title: subMenu, level: 2 });
+                            updateMenu(subMenu, 2);
+                        };
+                        menuItems.appendChild(menuItem);
+                    }
+                } else if (level === 2) {
+                    const companies = atividades[currentMenu[0].title][title];
+                    for (let company in companies) {
+                        const menuItem = document.createElement('div');
+                        menuItem.classList.add('menu-item');
+                        menuItem.innerText = company;
+                        menuItem.onclick = () => {
+                            currentMenu.push({ title: company, level: 3 });
+                            updateMenu(company, 3);
+                        };
+                        menuItems.appendChild(menuItem);
+                    }
+                } else if (level === 3) {
+                    const activities = atividades[currentMenu[0].title][currentMenu[1].title][title];
+                    for (let activity of activities) {
+                        const menuItem = document.createElement('div');
+                        menuItem.classList.add('menu-item');
+                        menuItem.innerText = activity;
+                        menuItem.onclick = () => {
+                            selectedActivity = {
+                                atividade: activity,
+                                empresa: title
+                            };
+                            startTimer();
+                            alert(`Atividade selecionada: ${activity}`);
+                        };
+                        menuItems.appendChild(menuItem);
+                    }
+                }
+            }
+
+            menuItems.style.display = 'block';
+        }
+
+        function toggleMainMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.display === 'block') {
+                menuItems.style.display = 'none';
+                currentMenu = [];
+            } else {
+                updateMenu('', 0);
+            }
+        }
+
+        function logout() {
+        fetch('/logout', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+        }).then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            } else {
+                alert('Erro ao sair. Tente novamente.');
+            }
+        }).catch(error => console.error('Erro:', error));
+        }
+
+        let timer, startTime, endTime;
+        let isRunning = false;
+        let elapsedSeconds = 0;
+
+        function updateTimerDisplay() {
+            const hours = String(Math.floor(elapsedSeconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((elapsedSeconds % 3600) / 60)).padStart(2, '0');
+            const seconds = String(elapsedSeconds % 60).padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startTime = new Date();
+                timer = setInterval(() => {
+                    elapsedSeconds++;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(timer);
+            }
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            elapsedSeconds = 0;
+            updateTimerDisplay();
+        }
+
+        function finishTimer() {
+            if (confirm('Deseja finalizar a atividade?')) {
+                isRunning = false;
+                clearInterval(timer);
+                endTime = new Date();
+
+                let startFormatted = `${String(startTime.getHours()).padStart(2, '0')}:${String(startTime.getMinutes()).padStart(2, '0')}:${String(startTime.getSeconds()).padStart(2, '0')}`;
+                let endFormatted = `${String(endTime.getHours()).padStart(2, '0')}:${String(endTime.getMinutes()).padStart(2, '0')}:${String(endTime.getSeconds()).padStart(2, '0')}`;
+
+                const data = {
+                    atividade: selectedActivity.atividade,
+                    empresa: selectedActivity.empresa,
+                    diaInicio: startTime.toLocaleDateString('pt-BR'),
+                    horaInicio: startFormatted,
+                    diaTermino: endTime.toLocaleDateString('pt-BR'),
+                    horaTermino: endFormatted,
+                    tempoConclusao: document.getElementById('timerDisplay').textContent,
+                    responsavel: '{{ username }}'
+                };
+
+                fetch('/saveActivity', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).then(response => response.json())
+                  .then(data => {
+                      alert(data.message);
+                  }).catch(error => console.error('Erro:', error));
+
+                elapsedSeconds = 0;
+                updateTimerDisplay();
+            } else {
+                startTimer();
+            }
+        }
+
+        let pauseStartTime;
+
+        function pauseTimer() {
+            if (isRunning) {
+                isRunning = false;
+
+                pauseStartTime = new Date();
+                clearInterval(timer);
+
+                let justificativa = prompt("Digite a justificativa para a pausa:");
+                if (justificativa) {
+                    // Dados para enviar
+                    const data = {
+                        atividade: selectedActivity.atividade,
+                        empresa: selectedActivity.empresa,
+                        diaInicio: startTime.toLocaleDateString('pt-BR'),
+                        horaInicio: `${String(startTime.getHours()).padStart(2, '0')}:${String(startTime.getMinutes()).padStart(2, '0')}:${String(startTime.getSeconds()).padStart(2, '0')}`,
+                        horaInicioDaPausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
+                        tempoDeInicio: document.getElementById('timerDisplay').textContent,
+                        responsavel: '{{ username }}',
+                        justificativa: justificativa
+                    };
+
+                    fetch('/saveJustificativa', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }).then(response => response.json())
+                    .then(data => {
+                        alert(data.message);  // Mostra a mensagem de resposta do servidor
+                    })
+                    .catch((error) => {
+                        console.error('Erro:', error);
+                    });
+                }
+            }
+        }
+
+        window.addEventListener('popstate', function() {
+            // Se o cookie de sessão não estiver presente, redirecione para login
+            if (!document.cookie.includes('session_id')) {
+                window.location.href = '/login_page';
+            }
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/imagem/Tela_timer.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .menu-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            width: 30px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-right: 10px;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 4px;
+            background-color: #ffffff;
+            border-radius: 2px;
+        }
+
+        .menu-text {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        #menuItems {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            background-color: #021331;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: #0099ab;
+        }
+
+        .menu-title {
+            padding: 10px 20px;
+            background-color: #1E4678;
+            font-weight: bold;
+        }
+
+        .timer-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #timerDisplay {
+            font-size: 48px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .timer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0d3a78;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button img {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container" onclick="toggleMainMenu()">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-text">Menu</div>
+    </div>
+
+    <div id="menuItems"></div>
+
+    <h1 style="text-align: center;">Worktimer Mangels,{{ username }} </h1>
+
+    <div class="timer-container">
+        <div id="timerDisplay">00:00:00</div>
+        <div class="timer-buttons">
+            <button onclick="startTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/play.png" alt="Iniciar" /> Iniciar
+            </button>
+            <button onclick="pauseTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/pause.png" alt="Pausar" /> Pausar
+            </button>
+            <button onclick="resetTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/replay.png" alt="Reiniciar" /> Reiniciar
+            </button>
+            <button onclick="finishTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/stop.png" alt="Finalizar" /> Finalizar
+            </button>
+        </div>
+    </div>
+<script>
+    // Prevent back button after logout
+    window.onload = function() {
+        if (window.history && window.history.pushState) {
+            window.history.pushState('forward', null, window.location.href);
+            window.onpopstate = function() {
+                window.history.pushState('forward', null, window.location.href);
+                // Check session status
+                fetch('/check_session', {
+                    method: 'GET',
+                    credentials: 'same-origin'
+                }).then(response => {
+                    if (!response.ok) {
+                        window.location.href = '/login_page';
+                    }
+                });
+            };
+        }
+    }
+</script>
+</body>
+</html>
