@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        const submenusEspecificos = {
+            "Ekoga": ["0001-17"],
+            "Manaus": ["0001-58"],
+            "Misa": ["0016-99", "0021-56", "0005-36", "0004-55", "0001-02", "0015-08"],
+            "M.S.A": ["0001-40"],
+            "Shorewood": ["0001-60"],
+            "Tecnopar": ["0001-01"]
+        };
+        const atividades = {
+            "Apuração": {
+                "Federal": {
+                    "Ekoga": ["Apuração PIS/COFINS", "INSS PJ/PF", "Apuração IRRF/PCC", "Apuração INSS RF"],
+                    "Manaus": ["Apuração PIS/COFINS", "IPI", "Apuração IRRF/PCC", "Apuração INSS RF"],
+                    "Misa": ["Apuração IRRF/PCC", "Apuração INSS RF", "IPI – Aços", "IPI – Sede", "IPI – Três Corações", "Títulos liquidados (F600)"],
+                    "Tecnopar": ["Apuração IRRF/PCC", "Apuração INSS RF"],
+                    "Todas": []
+                },
+                "Estadual": {
+                    "Ekoga": ["ICMS Próprio, DIFAL"],
+                    "Manaus": ["ICMS Próprio, DIFAL"],
+                    "Misa": ["Apuração Energia Elétrica", "ICMS Próprio, DIFAL - Três Corações", "ICMS Próprio, DIFAL - E-commerce", "ICMS Próprio, DIFAL - Goiânia", "ICMS Próprio, DIFAL - Aços", "ICMS Próprio, DIFAL - Paulínia", "ICMS Próprio, DIFAL - Sede", "ICMS Próprio, DIFAL - Três Corações", "Pagamento Taxa Regime Especial"],
+                    "Tecnopar": [], "Todas": []
+                },
+                "Municipal": {
+                    "Ekoga": ["ISS"],
+                    "Manaus": ["ISS"],
+                    "Misa": ["ISS - Aços", "ISS – Goiânia", "ISS – M.S.A", "ISS – Paulínia", "ISS - Sede", "ISS - Shorewood", "ISS – Três Corações"],
+                    "Tecnopar": ["ISS – Tecnopar"],
+                    "Todas": []
+                }
+            },
+            "Conciliação": {
+                "Federal": {
+                    "Ekoga": ["Conciliação PIS/COFINS", "Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Manaus": ["Conciliação IPI", "Conciliação PIS/COFINS", "Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Misa": ["Conciliação IPI", "Conciliação PIS/COFINS", "Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Tecnopar": ["Conciliação IRRF", "Conciliação PCC", "Conciliação INSS RF"],
+                    "Todas": []
+                },
+                "Estadual": {
+                    "Ekoga": ["Conciliação ICMS"],
+                    "Manaus": ["Conciliação ICMS"],
+                    "Misa": ["Conciliação ICMS"],
+                    "Tecnopar": [],
+                    "Todas": []
+                },
+                "Municipal": {
+                    "Ekoga": ["Conciliação ISS"],
+                    "Manaus": ["Conciliação ISS"],
+                    "Misa": ["Conciliação – ISS"],
+                    "Tecnopar": [],
+                    "Todas": []
+                }
+            },
+            "Declaração": {
+                "Federal": {
+                    "Ekoga": ["DCTF", "DIRF", "EFD PIS/COFINS", "Refis", "Reinf"],
+                    "Manaus": ["DCTF", "DIRF", "EFD PIS/COFINS", "PERDCOMP PIS/COFINS", "REINF", "REINTEGRA"],
+                    "Misa": ["DCTF", "DIRF", "EFD PIS/COFINS", "PERDCOMP PIS/COFINS", "REINF", "REINTEGRA"],
+                    "Tecnopar": [],
+                    "Todas": ["Conf. de Livros Fiscais Entrada", "Conf. de Livros Fiscais Saída", "Conf. de PIS/COFINS", "Conf. Notas de Serviços"]
+                },
+                "Estadual": {
+                    "Ekoga": ["SPED Fiscal"],
+                    "Manaus": ["DAM", "Dia", "Pesquisa IBGE", "Questionário SUDAM", "SPED Fiscal"],
+                    "Misa": ["DAPI", "FCI", "FIEMG", "PROGRAMA NOS CONFORMES / RANKING TOYOTA - Mangels SP", "REGULARIZE ICMS (ENERGIA ELETRICA/TARGET) - Três Corações", "SPED FISCAL - Aços", "SPED FISCAL - E-commerce", "SPED FISCAL - Goiânia", "SPED FISCAL – Sede", "SPED FISCAL - Três Corações", "VAF DAMEF - E-commerce", "SPED FISCAL - Paulínia", "VAF DAMEF - Sede", "VAF DAMEF - Três Corações"],
+                    "Tecnopar": [],
+                    "Todas": []
+                },
+                "Municipal": {
+                    "Ekoga": [],
+                    "Manaus": [],
+                    "Misa": [],
+                    "Tecnopar": [],
+                    "Todas": []
+                }
+            }
+        };
+    const conferencias = {
+        "Conferências NF Entrada": ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        "Conferências NFS-e" : ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        "Conferências NF Saída":["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        "Conferências de CT-e" : ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        };
+
+        let currentMenu = [];
+        let selectedActivity = {};
+
+        function updateMenu(title, level) {
+            console.log("updateMenu chamado com título:", title, "nível:", level);
+
+            let menuItems = document.getElementById('menuItems');
+            menuItems.innerHTML = '';
+
+            const titleElement = document.createElement('div');
+            titleElement.classList.add('menu-title');
+            titleElement.innerText = title;
+            menuItems.appendChild(titleElement);
+
+            let submenus = [];
+
+            if (conferencias[title]) {
+                console.log("Carregando conferências para:", title);
+                submenus = conferencias[title];
+            } else if (submenusEspecificos[title]) {
+                console.log("Carregando submenus específicos para:", title);
+                submenus = submenusEspecificos[title];
+            } else if (atividades[title]) {
+                console.log("Carregando atividades para:", title);
+                submenus = atividades[title];
+                // Achou atividades para o título; precisamos lidar com a subestrutura de atividades.
+            } else if (level === 1) {
+                console.log("Adicionando submenus principais");
+                submenus = ['Ekoga', 'Manaus', 'M.S.A', 'Misa', 'Shorewood', 'Tecnopar'];
+            } else {
+                console.log("Adicionando submenus de atividades específicas");
+                submenus = atividades[label];
+            }
+
+            console.log("Submenus encontrados:", submenus);
+
+            submenus.forEach(submenu => {
+                const submenuItem = document.createElement('div');
+                submenuItem.classList.add('menu-item');
+                submenuItem.innerText = submenu;
+
+                submenuItem.onclick = () => {
+                    if (atividades[title] && atividades[title][submenu]) {
+                        console.log(`Atividades específicas para ${submenu} em ${title}`);
+                        // Você pode adaptar a lógica aqui para explorar as subcategorias como "Federal", "Estadual", "Municipal"
+                        addSubmenusEspecificos(submenu, atividades[title][submenu]);
+                    } else if (submenusEspecificos[submenu]) {
+                        console.log(`Submenus específicos para ${submenu}`);
+                        addSubmenusEspecificos(submenu, submenusEspecificos[submenu]);
+                    } else {
+                        console.log(`Atualizando menu para submenu: ${submenu}`);
+                        updateMenu(submenu, level + 1);
+                    }
+                };
+
+                menuItems.appendChild(submenuItem);
+            });
+
+            menuItems.style.position = 'absolute';
+            menuItems.style.top = '80px';
+            menuItems.style.left = '10px';
+            menuItems.style.display = 'flex';
+            menuItems.style.flexDirection = 'column';
+        }
+
+        function addSubmenusEspecificos(title, submenusList) {
+            let menuItems = document.getElementById('menuItems');
+            menuItems.innerHTML = '';
+
+            const titleElement = document.createElement('div');
+            titleElement.classList.add('menu-title');
+            titleElement.innerText = title;
+            menuItems.appendChild(titleElement);
+
+            submenusList.forEach(submenu => {
+                const submenuItem = document.createElement('div');
+                submenuItem.classList.add('menu-item');
+                submenuItem.innerText = submenu;
+
+                submenuItem.onclick = () => {
+                    alert(`Clicado em ${submenu} em ${title}`);
+                };
+
+                menuItems.appendChild(submenuItem);
+            });
+
+            menuItems.style.position = 'absolute';
+            menuItems.style.top = '80px';
+            menuItems.style.left = '10px';
+            menuItems.style.display = 'flex';
+            menuItems.style.flexDirection = 'column';
+        }
+
+        function toggleMainMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.display === 'none' && currentMenu.length === 0) {
+                menuItems.style.display = 'flex';
+            } else {
+                updateMenu('', 0);
+            }
+        }
+
+        function showSubmenu(menuItem) {
+            const submenu = menuItem.querySelector('.submenu');
+            submenu.style.display = 'block';
+            const menuName = menuItem.innerText.trim();
+            const submenuItems = submenusMap[menuName] || [];
+            submenu.style.left = menuItem.offsetWidth + 'px';
+            submenu.innerHTML = submenuItems.map(item => `<div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">${item}</div>`).join('');
+        }
+
+        function hideSubmenu(menuItem) {
+            const submenu = menuItem.querySelector('.submenu');
+            submenu.style.display = 'none';
+        }
+        function logout() {
+        fetch('/logout', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+        }).then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            } else {
+                alert('Erro ao sair. Tente novamente.');
+            }
+        }).catch(error => console.error('Erro:', error));
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/imagem/Tela_timer.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            flex-direction: row;
+            gap: 10px;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            background-color: #0099ab;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #021331;
+            border-radius: 4px;
+            z-index: 100;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .submenu .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+        .submenu .submenu {
+            top: 0;
+            left: 100%;
+            width: 150px;
+        }
+
+        .submenu .menu-item:hover {
+            background-color: #0099ab;
+        }
+
+        .timer-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #timerDisplay {
+            font-size: 48px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .timer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0d3a78;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button img {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Apuração
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Estadual
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Municipal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Conciliação
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Estadual
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Municipal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Declaração
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Estadual
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Municipal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Conferências
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências NF Entrada
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências NFS-e
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências NF Saída
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências de CT-e
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" onclick="updateMenu('Cronograma', 1)">Cronograma</div>
+        <div class="menu-item" onclick="updateMenu('Importar Guias', 1)">Importar Guias</div>
+                <div class="menu-item" onclick="logout()">Sair</div>
+    </div>
+    </div>
+
+    <div id="menuItems"></div>
+    <div class="timer-container">
+        <div id="timerDisplay">00:00:00</div>
+        <div class="timer-buttons">
+            <button onclick="startTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/play.png" alt="Iniciar" /> Iniciar
+            </button>
+            <button onclick="pauseTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/pause.png" alt="Pausar" /> Pausar
+            </button>
+            <button onclick="resetTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/replay.png" alt="Reiniciar" /> Reiniciar
+            </button>
+            <button onclick="finishTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/stop.png" alt="Finalizar" /> Finalizar
+            </button>
+        </div>
+    </div>
+    <script>
+        // Prevent back button after logout
+        window.onload = function() {
+            if (window.history && window.history.pushState) {
+                window.history.pushState('forward', null, window.location.href);
+                window.onpopstate = function () {
+                    window.history.pushState('forward', null, window.location.href);
+                };
+            }
+        }
+    </script>
+</body>
+</html>
