@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        const submenusEstabelecimentos = {
+            "Ekoga": ["0001-17"],
+            "Manaus": ["0001-58"],
+            "Misa": ["0016-99", "0021-56", "0005-36", "0004-55", "0001-02", "0015-08"],
+            "M.S.A": ["0001-40"],
+            "Shorewood": ["0001-60"],
+            "Tecnopar": ["0001-01"]
+        };
+        const submenusTributos = {
+        "Apuração": {
+            "Federal": {
+                "Ekoga": {
+                    "0001-17": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
+                },
+                "Manaus": {
+                    "0001-58": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
+                },
+                "Misa": {
+                    "0016-99": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
+                    "0021-56": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
+                    "0005-36": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
+                    "0004-55": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
+                    "0001-02": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
+                    "0015-08": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
+                },
+                "M.S.A": {
+                    "0001-40": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
+                },
+                "Shorewood": {
+                    "0001-60": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
+                },
+                "Tecnopar": {
+                    "0001-01": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
+                }
+            },
+            "Estadual": {
+                "Ekoga": {
+                    "0001-17": ["ICMS Difal"]
+                },
+                "Manaus": {
+                    "0001-58": ["ICMS Difal"]
+                },
+                "Misa": {
+                    "0016-99": ["ICMS Difal"],
+                    "0021-56": ["ICMS Difal"],
+                    "0005-36": ["ICMS Difal"],
+                    "0004-55": ["ICMS Difal"],
+                    "0001-02": ["ICMS Difal"],
+                    "0015-08": ["ICMS Difal"]
+                },
+                "M.S.A": {
+                    "0001-40": ["ICMS Difal"]
+                },
+                "Shorewood": {
+                    "0001-60": ["ICMS Difal"]
+                },
+                "Tecnopar": {
+                    "0001-01": ["ICMS Difal"]
+                }
+            },
+            "Municipal": {
+                "Ekoga": {
+                    "0001-17": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
+                },
+                "Manaus": {
+                    "0001-58": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
+                },
+                "Misa": {
+                    "0016-99": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
+                    "0021-56": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
+                    "0005-36": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
+                    "0004-55": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
+                    "0001-02": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
+                    "0015-08": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
+                },
+                "M.S.A": {
+                    "0001-40": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
+                },
+                "Shorewood": {
+                    "0001-60": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
+                },
+                "Tecnopar": {
+                    "0001-01": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
+                }
+            }
+        }
+    };
+    const conferencias = {
+        "Conferências NF Entrada": ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        "Conferências NFS-e" : ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        "Conferências NF Saída":["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        "Conferências de CT-e" : ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
+        };
+
+        let currentMenu = [];
+        let selectedActivity = {};
+
+    function updateMenu(filial, level, empresa, tipo, tributo) {
+        const menuItems = document.getElementById('menuItems');
+        menuItems.innerHTML = '';
+
+        if (submenusTributos["Apuração"][tipo] &&
+            submenusTributos["Apuração"][tipo][empresa] &&
+            submenusTributos["Apuração"][tipo][empresa][filial][tributo]) {
+
+            const tributos = submenusTributos["Apuração"][tipo][empresa][filial][tributo];
+
+            tributos.forEach(tributo => {
+                const tributoItem = document.createElement('div');
+                tributoItem.classList.add('menu-item');
+                tributoItem.innerText = tributo;
+                tributoItem.onclick = () => {
+                    selectedActivity = {
+                        empresa: empresa,
+                        filial: filial,
+                        tipo: tipo,
+                        tributo: tributo
+                    };
+                    alert(`Selecionado: ${tributo}`);
+                };
+                menuItems.appendChild(tributoItem);
+            });
+        }
+    }
+
+        function addSubmenusEspecificos(title, submenusList) {
+            let menuItems = document.getElementById('menuItems');
+            menuItems.innerHTML = '';
+
+            const titleElement = document.createElement('div');
+            titleElement.classList.add('menu-title');
+            titleElement.innerText = title;
+            menuItems.appendChild(titleElement);
+
+            submenusList.forEach(submenu => {
+                const submenuItem = document.createElement('div');
+                submenuItem.classList.add('menu-item');
+                submenuItem.innerText = submenu;
+
+                submenuItem.onclick = () => {
+                    alert(`Clicado em ${submenu} em ${title}`);
+                };
+
+                menuItems.appendChild(submenuItem);
+            });
+
+            menuItems.style.position = 'absolute';
+            menuItems.style.top = '80px';
+            menuItems.style.left = '10px';
+            menuItems.style.display = 'flex';
+            menuItems.style.flexDirection = 'column';
+        }
+
+        function toggleMainMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.display === 'none' && currentMenu.length === 0) {
+                menuItems.style.display = 'flex';
+            } else {
+                updateMenu('', 0);
+            }
+        }
+
+        function showSubmenu(element) {
+            const submenu = element.querySelector('.submenu');
+            if (submenu) {
+                submenu.style.display = 'block';
+
+                // If this is a filial (last level before tributos)
+                if (element.getAttribute('data-filial')) {
+                    const filial = element.getAttribute('data-filial');
+                    const empresa = element.getAttribute('data-empresa');
+                    const tipo = element.getAttribute('data-tipo');
+
+                    // Create tributos submenu
+                    const tributosSubmenu = document.createElement('div');
+                    tributosSubmenu.classList.add('submenu');
+
+                    const tributos = submenusTributos["Apuração"][tipo][empresa][filial];
+                    tributos.forEach(tributo => {
+                        const tributoItem = document.createElement('div');
+                        tributoItem.classList.add('menu-item');
+                        tributoItem.innerText = tributo;
+                        tributoItem.onclick = () => updateMenu(filial, 4, empresa, tipo, tributo);
+                        tributosSubmenu.appendChild(tributoItem);
+                    });
+
+                    element.appendChild(tributosSubmenu);
+                }
+            }
+        }
+
+        function hideSubmenu(menuItem) {
+            const submenu = menuItem.querySelector('.submenu');
+            submenu.style.display = 'none';
+        }
+        function logout() {
+        fetch('/logout', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+        }).then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            } else {
+                alert('Erro ao sair. Tente novamente.');
+            }
+        }).catch(error => console.error('Erro:', error));
+        }
+        function updateTributosMenu(empresa, filial, tipo) {
+            const menuItems = document.getElementById('menuItems');
+            menuItems.innerHTML = '';
+
+            if (submenusTributos["Apuração"][tipo][empresa] &&
+                submenusTributos["Apuração"][tipo][empresa][filial]) {
+
+                const tributos = submenusTributos["Apuração"][tipo][empresa][filial];
+
+                const titleElement = document.createElement('div');
+                titleElement.classList.add('menu-title');
+                titleElement.innerText = `${tipo} - ${empresa} ${filial}`;
+                menuItems.appendChild(titleElement);
+
+                tributos.forEach(tributo => {
+                    const tributoItem = document.createElement('div');
+                    tributoItem.classList.add('menu-item');
+                    tributoItem.innerText = tributo;
+                    tributoItem.onclick = () => {
+                        selectedActivity = {
+                            empresa: empresa,
+                            filial: filial,
+                            tipo: tipo,
+                            tributo: tributo
+                        };
+                        alert(`Selecionado: ${tributo} para ${empresa} ${filial}`);
+                    };
+                    menuItems.appendChild(tributoItem);
+                });
+            }
+        }
+
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/imagem/Tela_timer.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            flex-direction: row;
+            gap: 10px;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            background-color: #0099ab;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #021331;
+            border-radius: 4px;
+            z-index: 100;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .submenu .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+        .submenu .submenu {
+            top: 0;
+            left: 100%;
+            width: 150px;
+        }
+
+        .submenu .menu-item:hover {
+            background-color: #0099ab;
+        }
+
+        .timer-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #timerDisplay {
+            font-size: 48px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .timer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0d3a78;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button img {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Apuração
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Ekoga
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-17
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Manaus -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Manaus
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-58
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Misa -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Misa
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0016-99
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0021-56
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('00021-56', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0005-36
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0004-55
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-02
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0015-08
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- M.S.A -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        M.S.A
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-40
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shorewood -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Shorewood
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-60
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tecnopar -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Tecnopar
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-01
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                Estadual
+                <div class="submenu">
+                    <!-- Ekoga -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Ekoga
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-17
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Manaus -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Manaus
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-58
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Misa -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Misa
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0016-99
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0021-56
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0005-36
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0004-55
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-02
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0015-08
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- M.S.A -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        M.S.A
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-40
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shorewood -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Shorewood
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-60
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tecnopar -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Tecnopar
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-01
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Municipal -->
+            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                Municipal
+                <div class="submenu">
+                    <!-- Ekoga -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Ekoga
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-17
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Manaus -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Manaus
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-58
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Misa -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Misa
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0016-99
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0021-56
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0005-36
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0004-55
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-02
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0015-08
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- M.S.A -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        M.S.A
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-40
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shorewood -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Shorewood
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-60
+                                <div class="submenu">
+                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tecnopar -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                        Tecnopar
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                0001-01
+                                    <div class="submenu">
+                                        <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
+                                        <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- PAREI AQUI -->
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Conciliação
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Estadual
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Municipal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Declaração
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Estadual
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Municipal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
+                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
+                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
+                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
+                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
+                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            M.S.A
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+            Conferências
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências NF Entrada
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências NFS-e
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências NF Saída
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                    Conferências de CT-e
+                    <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" onclick="updateMenu('Cronograma', 1)">Cronograma</div>
+        <div class="menu-item" onclick="updateMenu('Importar Guias', 1)">Importar Guias</div>
+                <div class="menu-item" onclick="logout()">Sair</div>
+    </div>
+    </div>
+
+    <div id="menuItems"></div>
+    <div class="timer-container">
+        <div id="timerDisplay">00:00:00</div>
+        <div class="timer-buttons">
+            <button onclick="startTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/play.png" alt="Iniciar" /> Iniciar
+            </button>
+            <button onclick="pauseTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/pause.png" alt="Pausar" /> Pausar
+            </button>
+            <button onclick="resetTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/replay.png" alt="Reiniciar" /> Reiniciar
+            </button>
+            <button onclick="finishTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/stop.png" alt="Finalizar" /> Finalizar
+            </button>
+        </div>
+    </div>
+    <script>
+        // Prevent back button after logout
+        window.onload = function() {
+            if (window.history && window.history.pushState) {
+                window.history.pushState('forward', null, window.location.href);
+                window.onpopstate = function () {
+                    window.history.pushState('forward', null, window.location.href);
+                };
+            }
+        }
+    </script>
+</body>
+</html>
