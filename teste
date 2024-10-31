@@ -4,422 +4,58 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        const submenusEstabelecimentos = {
-            "Ekoga": ["0001-17"],
-            "Manaus": ["0001-58"],
-            "Misa": ["0016-99", "0021-56", "0005-36", "0004-55", "0001-02", "0015-08"],
-            "M.S.A": ["0001-40"],
-            "Shorewood": ["0001-60"],
-            "Tecnopar": ["0001-01"]
-        };
-        const submenusTributos = {
-        "Apuração": {
-            "Federal": {
-                "Ekoga": {
-                    "0001-17": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
-                },
-                "Manaus": {
-                    "0001-58": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
-                },
-                "Misa": {
-                    "0016-99": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
-                    "0021-56": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
-                    "0005-36": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
-                    "0004-55": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
-                    "0001-02": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"],
-                    "0015-08": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
-                },
-                "M.S.A": {
-                    "0001-40": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
-                },
-                "Shorewood": {
-                    "0001-60": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
-                },
-                "Tecnopar": {
-                    "0001-01": ["Apuração PIS/COFINS", "Apuração IRRF/CSRF", "Apuração INSS RF"]
-                }
-            },
-            "Estadual": {
-                "Ekoga": {
-                    "0001-17": ["ICMS Difal"]
-                },
-                "Manaus": {
-                    "0001-58": ["ICMS Difal"]
-                },
-                "Misa": {
-                    "0016-99": ["ICMS Difal"],
-                    "0021-56": ["ICMS Difal"],
-                    "0005-36": ["ICMS Difal"],
-                    "0004-55": ["ICMS Difal"],
-                    "0001-02": ["ICMS Difal"],
-                    "0015-08": ["ICMS Difal"]
-                },
-                "M.S.A": {
-                    "0001-40": ["ICMS Difal"]
-                },
-                "Shorewood": {
-                    "0001-60": ["ICMS Difal"]
-                },
-                "Tecnopar": {
-                    "0001-01": ["ICMS Difal"]
-                }
-            },
-            "Municipal": {
-                "Ekoga": {
-                    "0001-17": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
-                },
-                "Manaus": {
-                    "0001-58": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
-                },
-                "Misa": {
-                    "0016-99": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
-                    "0021-56": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
-                    "0005-36": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
-                    "0004-55": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
-                    "0001-02": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"],
-                    "0015-08": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
-                },
-                "M.S.A": {
-                    "0001-40": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
-                },
-                "Shorewood": {
-                    "0001-60": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
-                },
-                "Tecnopar": {
-                    "0001-01": ["Iss s/ Serviços Prestados", "Iss s/ Serviços Tomados"]
-                }
-            }
-        }
-    };
-    const conferencias = {
-        "Conferências NF Entrada": ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
-        "Conferências NFS-e" : ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
-        "Conferências NF Saída":["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
-        "Conferências de CT-e" : ["Manutenções SAP","Gabaritos para Ajustes Contábeis ","Manutenções na Solução Fiscal (Em massa ou manual)"],
-        };
-
-        let currentMenu = [];
-        let selectedActivity = {};
-
-    function updateMenu(filial, level, empresa, tipo, tributo) {
-        const menuItems = document.getElementById('menuItems');
-        menuItems.innerHTML = '';
-
-        if (submenusTributos["Apuração"][tipo] &&
-            submenusTributos["Apuração"][tipo][empresa] &&
-            submenusTributos["Apuração"][tipo][empresa][filial][tributo]) {
-
-            const tributos = submenusTributos["Apuração"][tipo][empresa][filial][tributo];
-
-            tributos.forEach(tributo => {
-                const tributoItem = document.createElement('div');
-                tributoItem.classList.add('menu-item');
-                tributoItem.innerText = tributo;
-                tributoItem.onclick = () => {
-                    selectedActivity = {
-                        empresa: empresa,
-                        filial: filial,
-                        tipo: tipo,
-                        tributo: tributo
-                    };
-                    alert(`Selecionado: ${tributo}`);
-                };
-                menuItems.appendChild(tributoItem);
-            });
-        }
-    }
-
-        function addSubmenusEspecificos(title, submenusList) {
-            let menuItems = document.getElementById('menuItems');
-            menuItems.innerHTML = '';
-
-            const titleElement = document.createElement('div');
-            titleElement.classList.add('menu-title');
-            titleElement.innerText = title;
-            menuItems.appendChild(titleElement);
-
-            submenusList.forEach(submenu => {
-                const submenuItem = document.createElement('div');
-                submenuItem.classList.add('menu-item');
-                submenuItem.innerText = submenu;
-
-                submenuItem.onclick = () => {
-                    alert(`Clicado em ${submenu} em ${title}`);
-                };
-
-                menuItems.appendChild(submenuItem);
-            });
-
-            menuItems.style.position = 'absolute';
-            menuItems.style.top = '80px';
-            menuItems.style.left = '10px';
-            menuItems.style.display = 'flex';
-            menuItems.style.flexDirection = 'column';
-        }
-
-        function toggleMainMenu() {
-            const menuItems = document.getElementById('menuItems');
-            if (menuItems.style.display === 'none' && currentMenu.length === 0) {
-                menuItems.style.display = 'flex';
-            } else {
-                updateMenu('', 0);
-            }
-        }
-
-        function showSubmenu(element) {
-            const submenu = element.querySelector('.submenu');
-            if (submenu) {
-                submenu.style.display = 'block';
-
-                // If this is a filial (last level before tributos)
-                if (element.getAttribute('data-filial')) {
-                    const filial = element.getAttribute('data-filial');
-                    const empresa = element.getAttribute('data-empresa');
-                    const tipo = element.getAttribute('data-tipo');
-
-                    // Create tributos submenu
-                    const tributosSubmenu = document.createElement('div');
-                    tributosSubmenu.classList.add('submenu');
-
-                    const tributos = submenusTributos["Apuração"][tipo][empresa][filial];
-                    tributos.forEach(tributo => {
-                        const tributoItem = document.createElement('div');
-                        tributoItem.classList.add('menu-item');
-                        tributoItem.innerText = tributo;
-                        tributoItem.onclick = () => updateMenu(filial, 4, empresa, tipo, tributo);
-                        tributosSubmenu.appendChild(tributoItem);
-                    });
-
-                    element.appendChild(tributosSubmenu);
-                }
-            }
-        }
-
-        function hideSubmenu(menuItem) {
-            const submenu = menuItem.querySelector('.submenu');
-            submenu.style.display = 'none';
-        }
-        function logout() {
-        fetch('/logout', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'}
-        }).then(response => {
-            if (response.redirected) {
-                window.location.href = response.url;
-            } else {
-                alert('Erro ao sair. Tente novamente.');
-            }
-        }).catch(error => console.error('Erro:', error));
-        }
-        function updateTributosMenu(empresa, filial, tipo) {
-            const menuItems = document.getElementById('menuItems');
-            menuItems.innerHTML = '';
-
-            if (submenusTributos["Apuração"][tipo][empresa] &&
-                submenusTributos["Apuração"][tipo][empresa][filial]) {
-
-                const tributos = submenusTributos["Apuração"][tipo][empresa][filial];
-
-                const titleElement = document.createElement('div');
-                titleElement.classList.add('menu-title');
-                titleElement.innerText = `${tipo} - ${empresa} ${filial}`;
-                menuItems.appendChild(titleElement);
-
-                tributos.forEach(tributo => {
-                    const tributoItem = document.createElement('div');
-                    tributoItem.classList.add('menu-item');
-                    tributoItem.innerText = tributo;
-                    tributoItem.onclick = () => {
-                        selectedActivity = {
-                            empresa: empresa,
-                            filial: filial,
-                            tipo: tipo,
-                            tributo: tributo
-                        };
-                        alert(`Selecionado: ${tributo} para ${empresa} ${filial}`);
-                    };
-                    menuItems.appendChild(tributoItem);
-                });
-            }
-        }
-
-    </script>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('/static/imagem/Tela_timer.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-        }
-
-        .menu-container {
-            display: flex;
-            justify-content: left;
-            align-items: left;
-            flex-direction: row;
-            gap: 10px;
-            background-color: transparent;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .menu-item {
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            position: relative;
-        }
-
-        .menu-item:hover {
-            background-color: #0099ab;
-        }
-
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #021331;
-            border-radius: 4px;
-            z-index: 100;
-            flex-direction: column;
-            gap: 10px;
-            width: 210px;
-
-
-        }
-
-        .submenu .menu-item {
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            position: relative;
-
-
-
-        }
-        .submenu .submenu {
-            top: 0;
-            left: 100%;
-
-        }
-
-        .submenu .menu-item:hover {
-            background-color: #0099ab;
-
-
-        }
-
-        .timer-container {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        #timerDisplay {
-            font-size: 48px;
-            color: #ffffff;
-            background-color: transparent;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .timer-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            display: flex;
-            align-items: center;
-            background-color: transparent;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0d3a78;
-        }
-
-        button:focus {
-            outline: none;
-        }
-
-        button img {
-            margin-right: 8px;
-        }
-    </style>
 </head>
 <body>
     <div class="menu-container">
-        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCategoria('Apuração')">
             Apuração
             <div class="submenu">
-                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('Federal')">
                     Federal
                     <div class="submenu">
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                        Ekoga
-                        <div class="submenu">
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0001-17
-                                <div class="submenu">
-                                    <!-- PIS/COFINS Section -->
-                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                        Pis/Cofins
-                                        <div class="submenu">
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Bloco A
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">
-                                                        Análise NF's Serviços Prestados
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Ekoga')">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-17')">
+                                    0001-17
+                                    <div class="submenu">
+                                        <!-- PIS/COFINS Section -->
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
+                                            PIS/COFINS
+                                            <div class="submenu">
+                                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Bloco A')">
+                                                    Bloco A
+                                                    <div class="submenu">
+                                                        <div class="menu-item" onclick="handleActivityClick('Análise NF\'s Serviços Prestados')">Análise NF's Serviços Prestados</div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Bloco C
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Saída</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Conciliação das receitas</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Entrada</div>
+                                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Bloco C')">
+                                                    Bloco C
+                                                    <div class="submenu">
+                                                        <div class="menu-item" onclick="handleActivityClick('Análise NF\'s Saída')">Análise NF's Saída</div>
+                                                        <div class="menu-item" onclick="handleActivityClick('Conciliação das receitas')">Conciliação das receitas</div>
+                                                        <div class="menu-item" onclick="handleActivityClick('Análise NF\'s Entrada')">Análise NF's Entrada</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Fechamento EFD Contribuições
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Geração e validação no PVA</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Revisão e Auditoria Fiscal</div>
+                                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Fechamento EFD Contribuições')">
+                                                    Fechamento EFD Contribuições
+                                                    <div class="submenu">
+                                                        <div class="menu-item" onclick="handleActivityClick('Geração e validação no PVA')">Geração e validação no PVA</div>
+                                                        <div class="menu-item" onclick="handleActivityClick('Revisão e Auditoria Fiscal')">Revisão e Auditoria Fiscal</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Conciliação Contábil
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Conciliação PIS/COFINS</div>
+                                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Conciliação Contábil')">
+                                                    Conciliação Contábil
+                                                    <div class="submenu">
+                                                        <div class="menu-item" onclick="handleActivityClick('Conciliação PIS/COFINS')">Conciliação PIS/COFINS</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Entrega do EFD Contribuições
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Transmissão do arquivo</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Guias e FV60</div>
-                                                </div>
+                                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Entrega do EFD Contribuições')">
+                                                    Entrega do EFD Contribuições
+                                                    <div class="submenu">
+                                                        <div class="menu-item" onclick="handleActivityClick('Transmissão do arquivo')">Transmissão do arquivo</div>
+                                                        <div class="menu-item" onclick="handleActivityClick('Guias e FV60')">Guias e FV60</div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2139,7 +1775,7 @@
             <button onclick="resetTimer()">
                 <img src="https://img.icons8.com/ios-filled/24/ffffff/replay.png" alt="Reiniciar" /> Reiniciar
             </button>
-            <button onclick="finishTimer()">
+            <button onclick="finalizeActivity()">
                 <img src="https://img.icons8.com/ios-filled/24/ffffff/stop.png" alt="Finalizar" /> Finalizar
             </button>
         </div>
@@ -2157,3 +1793,255 @@
     </script>
 </body>
 </html>
+    <script>
+        let activityData = {};
+        let timer;
+        let totalSeconds = 0;
+
+        document.getElementById("startButton").onclick = startTimer;
+        document.getElementById("stopButton").onclick = stopTimer;
+        document.getElementById("resetButton").onclick = resetTimer;
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            totalSeconds = 0;
+            updateDisplay();
+        }
+
+        function updateTimer() {
+            totalSeconds++;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const seconds = String(totalSeconds % 60).padStart(2, '0');
+            document.getElementById("timerDisplay").textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Funções para lidar com a navegação do menu e atualizar activityData
+        function setCategoria(categoria) {
+            activityData.categoria = categoria;
+            console.log('Categoria selecionada:', categoria);
+        }
+
+        function setAmbito(ambito) {
+            activityData.ambito = ambito;
+            console.log('Âmbito selecionado:', ambito);
+        }
+
+        function setEmpresaNome(empresaNome) {
+            activityData.empresaNome = empresaNome;
+            console.log('Empresa Nome selecionado:', empresaNome);
+        }
+
+        function setCodigo(codigo) {
+            activityData.codigo = codigo;
+            console.log('Código selecionado:', codigo);
+        }
+
+        function setTributo(tributo) {
+            activityData.tributo = tributo;
+            console.log('Tributo selecionado:', tributo);
+        }
+
+        function setTarefa(tarefa) {
+            activityData.tarefa = tarefa;
+            console.log('Tarefa selecionada:', tarefa);
+        }
+
+        function handleActivityClick(activity) {
+            const confirmation = confirm(`Deseja iniciar a atividade ${activity}?`);
+            if (confirmation) {
+                startTimer();
+                alert(`Atividade ${activity} iniciada!`);
+
+                // Define a atividade selecionada e os horários
+                activityData.atividadeSelecionada = activity;
+                activityData.diaInicio = new Date().toLocaleDateString();
+                activityData.horaInicio = new Date().toLocaleTimeString();
+                activityData.responsavel = '{{ username }}'
+
+                console.log('Atividade iniciada:', activityData);
+            }
+        }
+
+        function finalizeActivity() {
+            const confirmation = confirm(`Deseja encerrar a atividade?`);
+            if (confirmation) {
+                stopTimer();
+
+                // Completa os dados do activityData
+                activityData.diaTermino = new Date().toLocaleDateString();
+                activityData.horaTermino = new Date().toLocaleTimeString();
+                activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
+
+                console.log('Atividade encerrada:', activityData);
+
+                fetch('/saveActivity', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(activityData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Resposta do servidor:', data);
+                    resetTimer(); // Zera o cronômetro após a resposta do servidor
+                    alert(data.message);
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+
+                alert(`Atividade ${activityData.atividadeSelecionada} finalizada!`);
+            }
+        }
+
+        function showSubmenu(element) {
+            const submenu = element.querySelector('.submenu');
+            if (submenu) {
+                submenu.style.display = 'block';
+            }
+        }
+
+        function hideSubmenu(menuItem) {
+            const submenu = menuItem.querySelector('.submenu');
+            if (submenu) {
+                submenu.style.display = 'none';
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/imagem/Tela_timer.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            flex-direction: row;
+            gap: 10px;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            background-color: #0099ab;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #021331;
+            border-radius: 4px;
+            z-index: 100;
+            flex-direction: column;
+            gap: 10px;
+            width: 210px;
+
+
+        }
+
+        .submenu .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+
+
+
+        }
+        .submenu .submenu {
+            top: 0;
+            left: 100%;
+
+        }
+
+        .submenu .menu-item:hover {
+            background-color: #0099ab;
+
+
+        }
+
+        .timer-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #timerDisplay {
+            font-size: 48px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .timer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0d3a78;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button img {
+            margin-right: 8px;
+        }
+    </style>
+</head>
