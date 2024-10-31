@@ -1008,46 +1008,55 @@
                 </div>
             </div>
         </div>
+
         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
             Conferências
             <div class="submenu">
                 <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                    Conferências NF Entrada
+                    NF-e Entrada
                     <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Conferência', 2)">Conferência</div>
                         <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
-                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
-                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal', 2)">Manutenções Fiscais</div>
                     </div>
                 </div>
                 <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                    Conferências NFS-e
+                    NFS-e
                     <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Conferência', 2)">Conferência</div>
                         <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
-                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
-                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal', 2)">Manutenções Fiscais</div>
                     </div>
                 </div>
                 <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                    Conferências NF Saída
+                     NF-e Saída
                     <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Conferência', 2)">Conferência</div>
                         <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
-                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
-                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal', 2)">Manutenções Fiscais</div>
                     </div>
                 </div>
                 <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                    Conferências de CT-e
+                    CT-e
                     <div class="submenu">
+                        <div class="menu-item" onclick="updateMenu('Conferência', 2)">Conferência</div>
                         <div class="menu-item" onclick="updateMenu('Manutenções SAP', 2)">Manutenções SAP</div>
-                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos para Ajustes Contábeis</div>
-                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal (Em massa ou manual)', 2)">Manutenções na Solução Fiscal (Em massa ou manual)</div>
+                        <div class="menu-item" onclick="updateMenu('Gabaritos para Ajustes Contábeis', 2)">Gabaritos Contábeis</div>
+                        <div class="menu-item" onclick="updateMenu('Manutenções na Solução Fiscal', 2)">Manutenções Fiscais</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="menu-item" onclick="updateMenu('Cronograma', 1)">Cronograma</div>
-        <div class="menu-item" onclick="updateMenu('Importar Guias', 1)">Importar Guias</div>
+        <div class="menu-item">
+            <a href="https://app.powerbi.com/links/-Eq6umCm7e?ctid=d121f2f6-79de-4d2c-9a4d-eb164cb62fb2&pbi_source=linkShare" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Indicadores</a>
+        </div>
+                <div class="menu-item" onclick="updateMenu('Guias', 1)">Guias ou Recibos</div>
                 <div class="menu-item" onclick="logout()">Sair</div>
+
     </div>
     </div>
 
