@@ -1797,6 +1797,8 @@
         let activityData = {};
         let timer;
         let totalSeconds = 0;
+        let activityIniciada = false;
+        let activityFinalizada = false;
 
         document.getElementById("startButton").onclick = startTimer;
         document.getElementById("stopButton").onclick = stopTimer;
@@ -1829,7 +1831,7 @@
             document.getElementById("timerDisplay").textContent = `${hours}:${minutes}:${seconds}`;
         }
 
-        // Funções para lidar com a navegação do menu e atualizar activityData
+
         function setCategoria(categoria) {
             activityData.categoria = categoria;
             console.log('Categoria selecionada:', categoria);
