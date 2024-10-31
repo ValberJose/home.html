@@ -245,6 +245,7 @@
         }
 
     </script>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -291,6 +292,9 @@
             z-index: 100;
             flex-direction: column;
             gap: 10px;
+            width: 210px;
+
+
         }
 
         .submenu .menu-item {
@@ -298,15 +302,20 @@
             cursor: pointer;
             transition: background-color 0.2s;
             position: relative;
+
+
+
         }
         .submenu .submenu {
             top: 0;
             left: 100%;
-            width: 150px;
+
         }
 
         .submenu .menu-item:hover {
             background-color: #0099ab;
+
+
         }
 
         .timer-container {
@@ -372,9 +381,93 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-17
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                    <!-- PIS/COFINS Section -->
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Pis/Cofins
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco A
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">
+                                                        Análise NF's Serviços Prestados
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco C
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Saída</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Conciliação das receitas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Entrada</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Geração e validação no PVA</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Revisão e Auditoria Fiscal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Conciliação PIS/COFINS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Apuração PIS/COFINS')">Guias e FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Retidos na Fonte
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                IRRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Apuração do IRRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                CSRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Apuração CSRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                INSS RF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Apuração INSS RF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Conciliação Retidos</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Guias e FV60</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Planilha FV60 p/ RH</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Transmissão DCTFWeb
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Transmissão DCTFWeb')">DCTF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Transmissão DCTFWeb')">DIRF</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -386,9 +479,153 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-58
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                    <!-- PIS/COFINS Section -->
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Pis/Cofins
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco A
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Rateio Vale Transporte</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Serviços Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco C
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Saída</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Conciliação das receitas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Entrada</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco D
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise Cte's </div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro F100
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP. Receitas Financ. e Outras</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP.Outras Despesas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro F130
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP. F130 Ativo Imob. - Ordens</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro M110 / M510
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Ajuste Devolução Compra</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Outros ajustes a crédito</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro M220 / M620
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Outros ajustes a débito</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro - 0111
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Rateio da Receita Bruta</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro 1100 e 1500
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Controle Saldo Credor da Apuração</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Geração e validação no PVA</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Revisão e Auditoria Fiscal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Conciliação PIS/COFINS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Transmissão do arquivo</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Retidos na Fonte
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                IRRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração do IRRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                CSRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração CSRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                INSS RF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração INSS RF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Conciliação Retidos</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Guias e FV60</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Planilha FV60 p/ RH</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Transmissão DCTFWeb
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DCTF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DIRF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">PERDCOMP - PIS COFINS </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        IPI
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'IPI')">Geração Livro IPI</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração IPI
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'IPI')">Apuração e Outros Ajustes</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -398,66 +635,228 @@
                         Misa
                         <div class="submenu">
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0016-99
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
-                                </div>
-                            </div>
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0021-56
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('00021-56', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
-                                </div>
-                            </div>
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0005-36
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
-                                </div>
-                            </div>
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0004-55
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
-                                </div>
-                            </div>
-
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-02
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Pis/Cofins
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco A
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Rateio Vale Transporte</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Serviços Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco C
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Saída</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Conciliação das receitas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Entrada</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Bloco D
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise Cte's </div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro F100
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP. Receitas Financ. e Outras</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP.Outras Despesas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro F130
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP. F130 Ativo Imob. - Ordens</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro M110 / M510
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Ajuste Devolução Compra</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Outros ajustes a crédito</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro M220 / M620
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Outros ajustes a débito</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro - 0111
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Rateio da Receita Bruta</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Registro 1100 e 1500
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Controle Saldo Credor da Apuração</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Geração e validação no PVA</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Revisão e Auditoria Fiscal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Conciliação PIS/COFINS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Transmissão do arquivo</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Retidos na Fonte
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                IRRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração do IRRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                CSRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração CSRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                INSS RF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração INSS RF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Conciliação Retidos</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Guias e FV60</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Planilha FV60 p/ RH</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Transmissão DCTFWeb
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DCTF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DIRF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">PERDCOMP - PIS COFINS </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            Reintegra
+                                            <div class="submenu">
+                                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                    Apuração Reintegra
+                                                    <div class="submenu">
+                                                        <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'IPI')">Excel</div>
+                                                        <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'IPI')">Geração PERDCOMP</div>
+                                                        <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'IPI')">Gabaritos</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0015-08
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        IPI
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'IPI')">Geração Livro IPI</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração IPI
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'IPI')">Apuração e Outros Ajustes</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- M.S.A -->
+                        <!-- M.S.A -->
                     <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                         M.S.A
                         <div class="submenu">
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0001-40
+                                    0001-40
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Retidos na Fonte
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                IRRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração do IRRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                CSRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração CSRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                INSS RF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração INSS RF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Conciliação Retidos</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Guias e FV60</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Planilha FV60 p/ RH</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Transmissão DCTFWeb
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DCTF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DIRF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">PERDCOMP - PIS COFINS </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -469,9 +868,51 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-60
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Retidos na Fonte
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                IRRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração do IRRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                CSRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração CSRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                INSS RF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração INSS RF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Conciliação Retidos</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Guias e FV60</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Planilha FV60 p/ RH</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Transmissão DCTFWeb
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DCTF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DIRF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">PERDCOMP - PIS COFINS </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -483,9 +924,51 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-01
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Federal', 'Apuração PIS/COFINS')">Apuração PIS/COFINS</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Federal', 'Apuração IRRF/CSRF')">Apuração IRRF/CSRF</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Federal', 'Apuração INSS RF')">Apuração INSS RF</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        Retidos na Fonte
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                IRRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração do IRRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                CSRF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração CSRF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                INSS RF
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Apuração INSS RF</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Conciliação Retidos</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Entrega do EFD Contribuições
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Guias e FV60</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Retidos na Fonte')">Planilha FV60 p/ RH</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Transmissão DCTFWeb
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DCTF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">DIRF</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Transmissão DCTFWeb')">PERDCOMP - PIS COFINS </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -502,11 +985,60 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-17
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ICMS
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise Outros Débitos / Créditos e Ajustes
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Geração dos Livros Apuração ICMS - Solução Fiscal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Consolidado com EFD ICMS / IPI - Ekoga
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Manutenções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Check - Registro 0200</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Check EFD Consol. x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Estadual', 'ICMS')">Transmissão do EFD</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <!-- Manaus -->
                     <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                         Manaus
@@ -514,7 +1046,64 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-58
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ICMS
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Extra Apuração
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">ICMS Alimentação</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">ICMS - FTI / UEA</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Consolidado com EFD ICMS / IPI - Manaus
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Manutenções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Check - Registro C170</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Check - Registro H010</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Check - Registro K200/K230</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Imp. manual-Registros 1921/25/26</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Check EFD Consol. x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Transmissão do EFD</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise Outros Débitos / Créditos e Ajustes
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Geração dos Livros Apuração ICMS - Solução Fiscal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -526,80 +1115,315 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0016-99
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ICMS
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise Outros Débitos / Créditos e Ajustes
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Geração dos Livros Apuração ICMS - Solução Fiscal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Consolidado com EFD ICMS / IPI - Misa
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', 'Estadual', 'ICMS')">Transmissão do EFD</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0021-56
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                            0021-56
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                    ICMS
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            Análise dos Livros
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            Difal
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            Análise Outros Débitos / Créditos e Ajustes
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            Geração dos Livros Apuração ICMS - Solução Fiscal
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            Conciliação Contábil
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            Fechamento Consolidado com EFD ICMS / IPI - Misa
+                                            <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Estadual', 'ICMS')">Transmissão do EFD</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0005-36
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ICMS
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Consolidado com EFD ICMS / IPI - Misa
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Transmissão do EFD </div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise Outros Débitos / Créditos e Ajustes
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Geração dos Livros Apuração ICMS - Solução Fiscal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0004-55
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ICMS
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Consolidado com EFD ICMS / IPI - Misa
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Manutenções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Geração CAT 66/2018 SP</div>
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Transmissão do EFD </div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise Outros Débitos / Créditos e Ajustes
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Geração dos Livros Apuração ICMS - Solução Fiscal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-02
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ICMS
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Guias e Lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Consolidado com EFD ICMS / IPI - Misa
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Manutenções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Transmissão do EFD </div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise Outros Débitos / Créditos e Ajustes
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Geração dos Livros Apuração ICMS - Solução Fiscal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0015-08
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- M.S.A -->
-                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                        M.S.A
-                        <div class="submenu">
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0001-40
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Shorewood -->
-                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                        Shorewood
-                        <div class="submenu">
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0001-60
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tecnopar -->
-                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                        Tecnopar
-                        <div class="submenu">
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0001-01
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Estadual', 'ICMS Difal')">ICMS Difal</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ICMS
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Consolidado com EFD ICMS / IPI - Misa
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Check EFD x Apuração</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Validação/Correções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Manutenções EFD</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Importações Manuais - Registros</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Check Registros</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Transmissão do EFD </div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise dos Livros
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Entradas</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Livro de Saídas</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Apuração ICMS DIFAL</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Guias e Lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Análise Outros Débitos / Créditos e Ajustes
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Ap. Outros Déb/Créd</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Geração dos Livros Apuração ICMS - Solução Fiscal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Geração Livros Ent/Saída/Ap</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Estadual', 'ICMS')">Conciliação ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Municipal -->
             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                 Municipal
                 <div class="submenu">
@@ -610,8 +1434,30 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-17
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-17', 4, 'Ekoga', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-17', 6, 'Ekoga', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-17', 6, 'Ekoga', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-17', 6, 'Ekoga', 'Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Prefeitura e Emissão da Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-17', 6, 'Ekoga', 'Municipal', 'ISSQN')">Guia e lançamento FV60 </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -623,8 +1469,30 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-58
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-58', 4, 'Manaus', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Prefeitura e Emissão da Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Municipal', 'ISSQN')">Guia e lançamento FV60 </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -636,43 +1504,175 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0016-99
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0016-99', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', ' Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento e Geração de Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', ' Municipal', 'ICMS')">Guia e lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0021-56
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0021-56', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                            0021-56
+                            <div class="submenu">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0021-56', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', ' Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento e Geração de Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', ' Municipal', 'ICMS')">Guia e lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0005-36
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0005-36', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                            <div class="submenu">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0005-36', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', ' Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento e Geração de Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0016-99', 6, 'Misa', ' Municipal', 'ICMS')">Guia e lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0004-55
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0004-55', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                            <div class="submenu">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', ' Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento e Geração de Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0004-55', 6, 'Misa', ' Municipal', 'ISSQN')">Guia e lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-02
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-02', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                            <div class="submenu">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', ' Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento e Geração de Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-02', 6, 'Misa', ' Municipal', 'ISSQN')">Guia e lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0015-08
-                                <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0015-08', 4, 'Misa', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                            <div class="submenu">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', ' Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento e Geração de Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0015-08', 6, 'Misa', ' Municipal', 'ISSQN')">Guia e lançamento FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -684,8 +1684,30 @@
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-40
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-40', 4, 'M.S.A', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'M.S.A', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'M.S.A', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'M.S.A', 'Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Prefeitura e Emissão da Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'M.S.A', 'Municipal', 'ISSQN')">Guia e lançamento FV60 </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -695,10 +1717,32 @@
                         Shorewood
                         <div class="submenu">
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0001-60
+                                0001-40
                                 <div class="submenu">
-                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                    <div class="menu-item" onclick="updateMenu('0001-60', 4, 'Shorewood', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'Shorewood', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'Shorewood', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'Shorewood', 'Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Prefeitura e Emissão da Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-40', 6, 'Shorewood', 'Municipal', 'ISSQN')">Guia e lançamento FV60 </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -709,10 +1753,32 @@
                         <div class="submenu">
                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
                                 0001-01
-                                    <div class="submenu">
-                                        <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Municipal', 'Iss s/ Serviços Prestados')">Iss s/ Serviços Prestados</div>
-                                        <div class="menu-item" onclick="updateMenu('0001-01', 4, 'Tecnopar', 'Municipal', 'Iss s/ Serviços Tomados')">Iss s/ Serviços Tomados</div>
+                                <div class="submenu">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        ISSQN
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Apuração ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-01', 6, 'Tecnopar', 'Municipal', 'ISSQN')">ISSQN Prestados</div>
+                                                    <div class="menu-item" onclick="updateMenu('0001-01', 6, 'Tecnopar', 'Municipal', 'ISSQN')">ISSQN Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-01', 6, 'Tecnopar', 'Municipal', 'ISSQN')">Conciliação ISSQN</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                                Fechamento Prefeitura e Emissão da Guias
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="updateMenu('0001-01', 6, 'Tecnopar', 'Municipal', 'ISSQN')">Guia e lançamento FV60 </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -721,7 +1787,7 @@
         </div>
     </div>
 
-<!-- PAREI AQUI -->
+<!-- Conciliação-->
         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
             Conciliação
             <div class="submenu">
