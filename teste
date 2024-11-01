@@ -24,7 +24,7 @@
                                             PIS/COFINS
                                             <div class="submenu">
                                                 <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Bloco A')">
-                                                    Bloco A
+                                                    Entradas
                                                     <div class="submenu">
                                                         <div class="menu-item" onclick="handleActivityClick('Análise NF\'s Serviços Prestados')">Análise NF's Serviços Prestados</div>
                                                     </div>
@@ -60,46 +60,46 @@
                                         </div>
                                     </div>
 
-                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
                                         Retidos na Fonte
                                         <div class="submenu">
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('IRRF')">
                                                 IRRF
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Apuração do IRRF</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração do IRRF')">Apuração do IRRF</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('CSRF')">
                                                 CSRF
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Apuração CSRF</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração do CSRF')">Apuração do CSRF</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('INSS RF')">
                                                 INSS RF
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Apuração INSS RF</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração do INSS RF')">Apuração do INSS RF</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Conciliação Contábil')">
                                                 Conciliação Contábil
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Conciliação Retidos</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Retidos')">Conciliação Retidos</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Entrega EFD Contribuições')">
                                                 Entrega do EFD Contribuições
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Transmissão do arquivo</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Guias e FV60</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Retidos na Fonte')">Planilha FV60 p/ RH</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Transmissão do arquivo')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Guias e FV60')">Guias e FV60</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Planilha FV60 p/ RH')">Planilha FV60 p/ RH</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Transmissão DCTFWeb')">
                                                 Transmissão DCTFWeb
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Transmissão DCTFWeb')">DCTF</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Ekoga', 'Federal', 'Transmissão DCTFWeb')">DIRF</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('DIRF')">DIRF</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,99 +108,101 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Manaus -->
-                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                        Manaus
-                        <div class="submenu">
-                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                0001-58
-                                <div class="submenu">
-                                    <!-- PIS/COFINS Section -->
-                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                        Pis/Cofins
-                                        <div class="submenu">
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Bloco A
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Rateio Vale Transporte</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Serviços Tomados</div>
-                                                </div>
+                   <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Manaus')">
+                    Manaus
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-58')">
+                            0001-58
+                            <div class="submenu">
+                                <!-- PIS/COFINS Section -->
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
+                                    Pis/Cofins
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Bloco A')">
+                                            Bloco A
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Rateio Vale Transporte')">Rateio Vale Transporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Análise NF's Serviços Tomados')">Análise NF's Serviços Tomados</div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Bloco C
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Saída</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Conciliação das receitas</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise NF's Entrada</div>
-                                                </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Bloco C')">
+                                            Bloco C
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Análise NF's Saída')">Análise NF's Saída</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Conciliação das receitas')">Conciliação das receitas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Análise NF's Entrada')">Análise NF's Entrada</div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Bloco D
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Análise Cte's </div>
-                                                </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Bloco D')">
+                                            Bloco D
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Análise Cte's')">Análise Cte's</div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                                                Registro F100
-                                                <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP. Receitas Financ. e Outras</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP.Outras Despesas</div>
-                                                </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Registro F100')">
+                                            Registro F100
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('AP. Receitas Financ. e Outras')">AP. Receitas Financ. e Outras</div>
+                                                <div class="menu-item" onclick="handleActivityClick('AP.Outras Despesas')">AP.Outras Despesas</div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                        </div>
+
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Registro F130')">
                                                 Registro F130
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">AP. F130 Ativo Imob. - Ordens</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('AP. F130 Ativo Imob. - Ordens')">AP. F130 Ativo Imob. - Ordens</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Registro M110 / M510')">
                                                 Registro M110 / M510
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Ajuste Devolução Compra</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Outros ajustes a crédito</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Ajuste Devolução Compra')">Ajuste Devolução Compra</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Outros ajustes a crédito')">Outros ajustes a crédito</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Registro M220 / M620')">
                                                 Registro M220 / M620
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Outros ajustes a débito</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Outros ajustes a débito')">Outros ajustes a débito</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Registro - 0111')">
                                                 Registro - 0111
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Rateio da Receita Bruta</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Rateio da Receita Bruta')">Rateio da Receita Bruta</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Registro 1100 e 1500')">
                                                 Registro 1100 e 1500
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Controle Saldo Credor da Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Controle Saldo Credor da Apuração')">Controle Saldo Credor da Apuração</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Fechamento EFD Contribuições')">
                                                 Fechamento EFD Contribuições
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Geração e validação no PVA</div>
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Revisão e Auditoria Fiscal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Geração e validação no PVA')">Geração e validação no PVA</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Revisão e Auditoria Fiscal')">Revisão e Auditoria Fiscal</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Conciliação Contábil')">
                                                 Conciliação Contábil
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Conciliação PIS/COFINS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação PIS/COFINS')">Conciliação PIS/COFINS</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTarefa('Entrega do EFD Contribuições')">
                                                 Entrega do EFD Contribuições
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="updateMenu('0001-58', 6, 'Manaus', 'Federal', 'Apuração PIS/COFINS')">Transmissão do arquivo</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Transmissão do arquivo')">Transmissão do arquivo</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
                                         Retidos na Fonte
                                         <div class="submenu">
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
@@ -1423,150 +1425,6 @@
         </div>
     </div>
 
-<!-- Conciliação-->
-        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-            Conciliação
-            <div class="submenu">
-                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                    Federal
-                    <div class="submenu">
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Ekoga
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Manaus
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Misa
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
-                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
-                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
-                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
-                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
-                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            M.S.A
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Shorewood
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Tecnopar
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                    Estadual
-                    <div class="submenu">
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Ekoga
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Manaus
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Misa
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
-                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
-                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
-                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
-                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
-                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            M.S.A
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Shorewood
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Tecnopar
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                    Municipal
-                    <div class="submenu">
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Ekoga
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-17', 3)">0001-17</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Manaus
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-58', 3)">0001-58</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Misa
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0016-99', 3)">0016-99</div>
-                                <div class="menu-item" onclick="updateMenu('0021-56', 3)">0021-56</div>
-                                <div class="menu-item" onclick="updateMenu('0005-36', 3)">0005-36</div>
-                                <div class="menu-item" onclick="updateMenu('0004-55', 3)">0004-55</div>
-                                <div class="menu-item" onclick="updateMenu('0001-02', 3)">0001-02</div>
-                                <div class="menu-item" onclick="updateMenu('0015-08', 3)">0015-08</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            M.S.A
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-40', 3)">0001-40</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Shorewood
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-60', 3)">0001-60</div>
-                            </div>
-                        </div>
-                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
-                            Tecnopar
-                            <div class="submenu">
-                                <div class="menu-item" onclick="updateMenu('0001-01', 3)">0001-01</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)">
             Declaração
             <div class="submenu">
