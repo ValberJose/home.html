@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de E-mail</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom right, #84AFC1, #2B4865); 
+            font-family: Arial, sans-serif;
+        }
+        .verify-container {
+            background-color: rgba(255, 255, 255, 0.1); 
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+        }
+        h2 {
+            color: white;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 1px solid #fff; 
+            background-color: transparent;
+            color: white;
+        }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .verify-button {
+            background-color: #002E5A;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .verify-button:hover {
+            background-color: #003F7D;
+        }
+    </style>
+</head>
+<body>
+    <div class="verify-container">
+        <h2>Verificação de E-mail</h2>
+        <form action="{{ url_for('verify') }}" method="post">
+            <input type="hidden" name="full_name" value="{{ full_name }}">
+            <input type="hidden" name="username" value="{{ username }}">
+            <input type="hidden" name="email" value="{{ email }}">
+            <input type="hidden" name="password" value="{{ password }}">
+            <input type="hidden" name="code" value="{{ code }}">
+            <input type="text" class="input-field" id="verification_code" name="submitted_code" placeholder="Código de Verificação" required>
+            <button type="submit" class="verify-button">Verificar</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
