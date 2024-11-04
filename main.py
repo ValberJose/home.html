@@ -11,6 +11,7 @@ from email.mime.text import MIMEText
 import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import make_response
+import streamlit as st
 
 # Configurar logging para debug
 logging.basicConfig(level=logging.DEBUG)
@@ -542,7 +543,7 @@ def logout():
     Rota para fazer logout do usuário.
 
     Returns:
-        redirect: Redireciona para a página de login.
+        redirect: Redireciona para a página de login.n
     """
     session.clear()
     response = make_response(redirect(url_for('login_page')))
