@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom right, #84AFC1, #2B4865); /* Ajuste as cores */
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.1); /* Transparência */
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+        }
+        .avatar {
+            background-color: #002E5A; /* Cor do círculo do avatar */
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar img {
+            width: 150px; /* Aumenta o tamanho da imagem dentro do círculo */
+            height: 150px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 1px solid #fff; /* Borda semelhante à imagem */
+            background-color: transparent;
+            color: white;
+        }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Placeholder branco */
+        }
+        .login-button, .create-account-button {
+            background-color: #002E5A; /* Cor do botão */
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Margem para separar os botões */
+        }
+        .login-button:hover, .create-account-button:hover {
+            background-color: #003F7D;
+        }
+        .create-account-container {
+            background-color: rgba(255, 255, 255, 0.1); /* Transparência */
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+        }
+        .forgot-password {
+            display: block; /* Garantir que o link ocupe uma linha inteira */
+            margin-top: 20px; /* Aumenta a margem superior */
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="create-account-container">
+        <div class="avatar">
+            <img src="{{ url_for('static', filename='imagem/avatar.png') }}" alt="Avatar" class="avatar-img">
+        </div>
+        <h2 style="color: white;">Criar Conta</h2>
+        <form method="post" action="{{ url_for('create_account') }}">
+            <input type="text" class="input-field" id="full_name" name="full_name" placeholder="Nome Completo" required>
+            <input type="text" class="input-field" id="username" name="username" placeholder="Usuário" required>
+            <input type="email" class="input-field" id="email" name="email" placeholder="E-mail" required>
+            <input type="password" class="input-field" id="password" name="password" placeholder="Senha" required>
+            <button type="submit" class="create-account-button">Criar Conta</button>
+        </form>
+        <a href="{{ url_for('login_page') }}" class="forgot-password">Voltar</a>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
