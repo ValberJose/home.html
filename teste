@@ -22,7 +22,10 @@
                                         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
                                             Pis/Cofins
                                             <div class="submenu">
-                                                <div class="menu-item" onclick="handleActivityClick('Apuração Pis/Cofins')">Apuração</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
                                                 <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
                                             </div>
@@ -49,9 +52,12 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
                                                 Pis/Cofins
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração PIS/COFINS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
                                                 </div>
                                             </div>
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
@@ -83,9 +89,12 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
                                                 Pis/Cofins
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração PIS/COFINS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
                                                 </div>
                                             </div>
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
@@ -103,7 +112,7 @@
                                                     <div class="menu-item" onclick="handleActivityClick('Conciliação IPI')">Conciliação</div>
                                                 </div>
                                             </div>
-                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('IPI')">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Reintegra')">
                                                 Reintegra
                                                 <div class="submenu">
                                                     <div class="menu-item" onclick="handleActivityClick('Apuração REINTEGRA')">Apuração</div>
@@ -160,9 +169,29 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
                                                ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 1</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Conciliação Contábil')">
+                                               Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação ICMS</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,9 +208,30 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
                                                ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco K</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 1</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Conciliação Contábil')">
+                                               Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação ICMS</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,9 +248,29 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
                                                ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 1</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Conciliação Contábil')">
+                                               Conciliação Contábil
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação ICMS</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,9 +281,24 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
                                                ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Difal')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco 0')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco C/D')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco E')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco H')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco K')">Bloco K</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco Ourtas Informações')">Bloco 1</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,9 +309,23 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
                                                ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 1</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -235,11 +334,30 @@
                                    0015-08
                                         <div class="submenu">
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
-                                               ICMS
+                                               Apuração do ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Outros Ajustes')">Outros Ajustes</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Fechamento')">Fechamento</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Guia')">Guia</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Difal')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco 0')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco C/D')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco E')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco H')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco K')">Bloco K</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Bloco Ourtas Informações')">Bloco 1</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,9 +368,23 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
                                                ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 1</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -263,9 +395,23 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
                                                ICMS
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS/IPI')">EFD ICMS/IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Apuração Difal')">
+                                               Apuração Difal
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Difal</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('EFD ICMS')">
+                                               EFD ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 0</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco C/D</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco E</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco H</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Bloco 1</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -287,7 +433,8 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Prestados')">Prestados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                     <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
                                                 </div>
                                             </div>
@@ -305,7 +452,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                     <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
                                                 </div>
                                             </div>
@@ -323,7 +470,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                     <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
                                                 </div>
                                             </div>
@@ -335,8 +482,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -347,8 +493,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -359,8 +504,14 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Prestados')">Prestados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('IPTU')">
+                                               IPTU
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Prestados')">FV60</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -371,8 +522,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -383,8 +533,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
-                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -401,7 +550,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                     <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
                                                 </div>
                                             </div>
@@ -418,7 +567,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                     <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
                                                 </div>
                                             </div>
@@ -435,7 +584,7 @@
                                             <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
                                                ISSQN
                                                 <div class="submenu">
-                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ISSQN')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
                                                     <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
                                                 </div>
                                             </div>
