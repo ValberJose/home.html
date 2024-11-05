@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import make_response
-import streamlit as st
+
 
 # Configurar logging para debug
 logging.basicConfig(level=logging.DEBUG)
