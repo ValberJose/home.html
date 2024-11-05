@@ -611,7 +611,7 @@
                                            Declarações
                                             <div class="submenu">
                                                 <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
-                                                <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">DIRF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DIRF')">DIRF</div>
                                                 <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">EFD CONTRIB</div>
                                             </div>
                                         </div>
@@ -633,10 +633,10 @@
                                         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
                                            Declarações
                                             <div class="submenu">
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">DIA</div>
-                                                <div class="menu-item" onclick="handleActivityClick('PERDCOMP PISCOFINS')">DAM</div>
-                                                <div class="menu-item" onclick="handleActivityClick('PERDCOMP IPI')">Pesquisa IBGE</div>
-                                                <div class="menu-item" onclick="handleActivityClick('DIRF')">Questionário SUDAM</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DIA')">DIA</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DAM')">DAM</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Pesquisa IBGE')">Pesquisa IBGE</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Questionário SUDAM')">Questionário SUDAM</div>
                                             </div>
                                         </div>
                                    </div>
@@ -652,7 +652,7 @@
                                         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
                                            Declarações
                                             <div class="submenu">
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Vaf Damef</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Vaf Damef')">Vaf Damef</div>
                                             </div>
                                         </div>
                                    </div>
@@ -663,7 +663,7 @@
                                         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
                                            Declarações
                                             <div class="submenu">
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Programa nos Conformes</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Programa nos Conformes')">Programa nos Conformes</div>
                                             </div>
                                         </div>
                                    </div>
@@ -674,11 +674,12 @@
                                         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
                                            Declarações
                                             <div class="submenu">
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">FCI</div>
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Fiemg</div>
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Vaf Damef</div>
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Parc. Regularize ICMS</div>
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Taxa Regime Especial</div>
+                                                <div class="menu-item" onclick="handleActivityClick('FCI')">FCI</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Fiemg')">Fiemg</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Vaf Damef')">Vaf Damef</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Parc. Regularize ICMS')">Parc. Regularize ICMS</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Envio de Relatorio de Acomp. - Protocolo de Intenções')">Envio de Relatorio de Acomp. - Protocolo de Intenções</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Taxa Regime Especial')">Taxa Regime Especial</div>
                                             </div>
                                         </div>
                                    </div>
@@ -689,8 +690,8 @@
                                         <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
                                            Declarações
                                             <div class="submenu">
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Vaf Damef</div>
-                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">Taxa Regime Especial</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Vaf Damef')">Vaf Damef</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Taxa Regime Especial')">Taxa Regime Especial</div>
                                             </div>
                                         </div>
                                    </div>
