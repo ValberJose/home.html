@@ -11,6 +11,7 @@ from email.mime.text import MIMEText
 import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import make_response
+from flask_sqlalchemy import SQLAlchemy
 
 
 # Configurar logging para debug
@@ -21,6 +22,12 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+if os.getenv('DATABASE_URL'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+
 
 # Caminho para o arquivo de configuração
 config_path = r'C:\Users\User\OneDrive - Mangels Industrial SA\WORKTIMER site\Worktimer_site\worktimer_site\config_2.json'
