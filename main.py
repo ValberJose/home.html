@@ -20,6 +20,19 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
+
+
+def get_db_connection():
+    DATABASE_URL = os.getenv('DATABASE_URL')
+    result = urlparse(DATABASE_URL)
+    connection = psycopg2.connect(
+        dbname=result.path[1:],
+        user=result.username,
+        password=result.password,
+        host=result.hostname,
+        port=result.port
+    )
+    return connection
 def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -84,19 +97,6 @@ def create_tables():
 
 # Chama a função create_tables ao iniciar o app
 create_tables()
-
-
-def get_db_connection():
-    DATABASE_URL = os.getenv('DATABASE_URL')
-    result = urlparse(DATABASE_URL)
-    connection = psycopg2.connect(
-        dbname=result.path[1:],
-        user=result.username,
-        password=result.password,
-        host=result.hostname,
-        port=result.port
-    )
-    return connection
 
 
 def send_email(to_email, subject, body):
