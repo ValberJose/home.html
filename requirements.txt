@@ -39,6 +39,7 @@ pbr==6.1.0
 pillow==10.4.0
 protobuf==5.28.3
 psutil==6.0.0
+psycopg2-binary==2.9.10
 pyarrow==18.0.0
 PyAutoGUI==0.9.54
 pycparser==2.22
