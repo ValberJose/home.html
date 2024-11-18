@@ -20,11 +20,6 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
-'''
-config_path = r'C:\Users\User\OneDrive - Mangels Industrial SA\WORKTIMER site\Worktimer_site\worktimer_site\config_2.json'
-with open(config_path, 'r') as file:
-    config = json.load(file)
-'''
 def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
