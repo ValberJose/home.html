@@ -890,20 +890,22 @@ function finalizeActivity() {
         stopTimer(); // Pausa o cronômetro
 
         const now = new Date();
-        const dataToSend = {
+         const dataToSend = {
             categoria: activityData.categoria,
             ambito: activityData.ambito,
-            empresa_nome: activityData.empresaNome, // Nome da empresa
+            empresaNome: activityData.empresaNome,  // Ajustado para corresponder ao backend
             codigo: activityData.codigo,
             tributo: activityData.tributo,
-            atividade_selecionada: activityData.atividadeSelecionada, // Atividade
-            dia_inicio: now.toISOString().split('T')[0], // Data no formato YYYY-MM-DD
-            hora_inicio: now.toTimeString().split(' ')[0], // Hora no formato HH:MM:SS
-            dia_termino: now.toISOString().split('T')[0], // Data no formato YYYY-MM-DD
-            hora_termino: now.toTimeString().split(' ')[0], // Hora no formato HH:MM:SS
-            tempo_conclusao: formatTimeInterval(document.getElementById("timerDisplay").textContent), // HH:MM:SS formatado como intervalo
-            responsavel: '{{ session.get("user") }}' // Usuário responsável
+            atividadeSelecionada: activityData.atividadeSelecionada, // Ajustado para corresponder ao backend
+            diaInicio: now.toISOString().split('T')[0],  // Ajustado para corresponder ao backend
+            horaInicio: now.toTimeString().split(' ')[0],  // Ajustado para corresponder ao backend
+            diaTermino: now.toISOString().split('T')[0],  // Ajustado para corresponder ao backend
+            horaTermino: now.toTimeString().split(' ')[0],  // Ajustado para corresponder ao backend
+            tempoConclusao: document.getElementById("timerDisplay").textContent,  // Ajustado para corresponder ao backend
+            responsavel: '{{ session.get("user") }}'
         };
+
+
 
         console.log('Enviando os dados para salvar atividade:', dataToSend);
 
