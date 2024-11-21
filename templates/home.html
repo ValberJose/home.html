@@ -887,27 +887,25 @@
 function finalizeActivity() {
     const confirmation = confirm(`Deseja encerrar a atividade?`);
     if (confirmation) {
-        stopTimer(); // Pausa o cronômetro
+        stopTimer();
 
         const now = new Date();
-         const dataToSend = {
+        const dataToSend = {
             categoria: activityData.categoria,
             ambito: activityData.ambito,
-            empresaNome: activityData.empresaNome,  
+            empresaNome: activityData.empresaNome,
             codigo: activityData.codigo,
             tributo: activityData.tributo,
-            atividadeSelecionada: activityData.tarefa, 
-            diaInicio: now.toISOString().split('T')[0],  
-            horaInicio: now.toTimeString().split(' ')[0],  
-            diaTermino: now.toISOString().split('T')[0],  
-            horaTermino: now.toTimeString().split(' ')[0],  
-            tempoConclusao: document.getElementById("timerDisplay").textContent,  
-            responsavel: '{{ session.get("user") }}'
+            atividadeSelecionada: document.getElementById('selectedActivity').textContent,
+            diaInicio: now.toISOString().split('T')[0],
+            horaInicio: now.toTimeString().split(' ')[0],
+            diaTermino: now.toISOString().split('T')[0],
+            horaTermino: now.toTimeString().split(' ')[0],
+            tempoConclusao: document.getElementById("timerDisplay").textContent,
+            responsavel: document.querySelector('[data-username]').dataset.username
         };
 
-
-
-        console.log('Enviando os dados para salvar atividade:', dataToSend);
+        console.log('Sending data:', dataToSend);
 
         fetch('/saveActivity', {
             method: 'POST',
@@ -916,20 +914,15 @@ function finalizeActivity() {
             },
             body: JSON.stringify(dataToSend)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta da rede');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log('Resposta do servidor:', data);
-            resetTimer(); // Reseta o cronômetro
-            document.getElementById('selectedActivity').textContent = ''; // Limpa a atividade selecionada
+            console.log('Server response:', data);
+            resetTimer();
+            document.getElementById('selectedActivity').textContent = '';
             alert('Atividade salva com sucesso!');
         })
         .catch(error => {
-            console.error('Erro ao salvar a atividade:', error);
+            console.error('Error:', error);
             alert('Erro ao salvar atividade. Verifique o console para mais detalhes.');
         });
     }
