@@ -316,27 +316,46 @@ def recover_password():
 @app.route('/reset_password', methods=['POST'])
 def reset_password():
     email = request.form['email']
-    new_password = request.form['new_password']
+    verification_code = request.form.get('verification_code')
+    new_password = request.form.get('new_password')
 
-    if not all(validate_password(new_password)):
-        flash("A senha deve conter pelo menos uma letra maiúscula, um caractere especial e um número.", "danger")
-        return render_template('reset_password.html', email=email)
+    # If only email is provided, generate and send verification code
+    if email and not verification_code and not new_password:
+        verification_code = generate_verification_code()
+        try:
+            send_email(email, "Código de Recuperação de Senha", 
+                      f"Seu código de recuperação é: {verification_code}")
+            return render_template('verify_password.html', 
+                                email=email, 
+                                code=verification_code)
+        except Exception as e:
+            flash("Erro ao enviar código de verificação.", "danger")
+            return redirect(url_for('recover_password'))
 
-    conn = get_db_connection()
-    cur = conn.cursor()
-    try:
-        hashed_password = generate_password_hash(new_password)
-        cur.execute("UPDATE usuarios_cadastros SET senha = %s WHERE email = %s", (hashed_password, email))
-        conn.commit()
-        flash("Senha redefinida com sucesso!", "success")
-        return redirect(url_for('login_page'))
-    except Exception as e:
-        conn.rollback()
-        flash("Erro ao redefinir senha.", "danger")
-        return render_template('reset_password.html', email=email)
-    finally:
-        cur.close()
-        conn.close()
+    # If verification code is provided, validate it
+    if verification_code and new_password:
+        if not all(validate_password(new_password)):
+            flash("A senha deve conter pelo menos uma letra maiúscula, um caractere especial e um número.", "danger")
+            return render_template('reset_password.html', email=email)
+
+        conn = get_db_connection()
+        cur = conn.cursor()
+        try:
+            hashed_password = generate_password_hash(new_password)
+            cur.execute("UPDATE usuarios_cadastros SET senha = %s WHERE email = %s", 
+                       (hashed_password, email))
+            conn.commit()
+            flash("Senha redefinida com sucesso!", "success")
+            return redirect(url_for('login_page'))
+        except Exception as e:
+            conn.rollback()
+            flash("Erro ao redefinir senha.", "danger")
+            return render_template('reset_password.html', email=email)
+        finally:
+            cur.close()
+            conn.close()
+
+    return redirect(url_for('recover_password'))
 
 
 # Função para validar datas
