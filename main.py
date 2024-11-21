@@ -294,7 +294,7 @@ def recover_password():
     email = request.form['email']
     if not email:
         flash("O campo de e-mail não pode estar vazio.", "danger")
-        return redirect(url_for('recover_password'))
+        return redirect(url_for('recover_password_page'))
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -315,10 +315,27 @@ def recover_password():
             )
         else:
             flash("E-mail não encontrado.", "danger")
-            return redirect(url_for('recover_password'))
+            return redirect(url_for('recover_password_page'))
     finally:
         cur.close()
         conn.close()
+@app.route('/verify_password', methods=['GET', 'POST'])
+def verify_password_page():
+    if request.method == 'POST':
+        email = request.form['email']
+        code = request.form['code']
+        submitted_code = request.form['submitted_code']
+
+        if code == submitted_code:
+            flash("Código de verificação correto! Redefina sua senha.", "success")
+            return render_template('reset_password.html', email=email)
+        else:
+            flash("Código de verificação incorreto!", "danger")
+            return render_template('verify_password.html', email=email, code=code)
+
+    email = request.args.get('email')
+    code = request.args.get('code')
+    return render_template('verify_password.html', email=email, code=code)
 
 
 @app.route('/reset_password', methods=['POST'])
