@@ -888,7 +888,7 @@
         const confirmation = confirm(`Deseja encerrar a atividade?`);
         if (confirmation) {
             stopTimer();
-
+    
             const now = new Date();
             const dataToSend = {
                 categoria: activityData.categoria,
@@ -904,9 +904,9 @@
                 tempo_conclusao: document.getElementById("timerDisplay").textContent,
                 responsavel: '{{ session.get("user") }}'
             };
-
+    
             console.log('Sending data:', dataToSend);
-
+    
             fetch('/saveActivity', {
                 method: 'POST',
                 headers: {
@@ -936,17 +936,17 @@
 
     function pauseTimer() {
         console.log('Função pauseTimer chamada');
-
+    
         if (timer) {
             console.log('Cronômetro está em execução, pausando...');
             clearInterval(timer);
             pauseStartTime = new Date();
-
+    
             let justificativa = prompt("Digite a justificativa para a pausa:");
-
+    
             if (justificativa) {
                 console.log('Justificativa inserida:', justificativa);
-
+    
                 const now = new Date();
                 const data = {
                     categoria: activityData.categoria || activityData.atividadeSelecionada,
@@ -961,9 +961,9 @@
                     responsavel: document.querySelector('[data-username]').dataset.username,
                     justificativa: justificativa
                 };
-
+    
                 console.log('Sending data:', data);
-
+    
                 fetch('/saveJustificativa', {
                     method: 'POST',
                     headers: {
@@ -986,8 +986,6 @@
             console.log('Cronômetro não está em execução');
         }
     }
-
-
 
                 fetch('/saveJustificativa', {
                     method: 'POST',
