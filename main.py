@@ -14,7 +14,7 @@ from flask import make_response
 import psycopg2
 from psycopg2.extras import DictCursor
 from urllib.parse import urlparse
-
+from datetime import datetime
 logging.basicConfig(level=logging.DEBUG)
 load_dotenv()
 app = Flask(__name__)
