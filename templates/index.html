@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <script>
+        // Mesmas funções de atividades e timer...
+
+        function updateMenu(title, level) {
+            // Função de menu...
+        }
+
+        function toggleMainMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.display === 'block') {
+                menuItems.style.display = 'none';
+                currentMenu = [];
+            } else {
+                updateMenu('', 0);
+            }
+        }
+
+        function logout() {
+            fetch('/logout', { method: 'POST' }) // Presumindo que você tenha uma rota de logout no servidor
+                .then(() => {
+                    window.location.href = '/login';  // Redireciona para a rota de login
+                })
+                .catch(console.error);
+        }
+
+        let timer, startTime, endTime;
+        let isRunning = false;
+        let elapsedSeconds = 0;
+
+        function updateTimerDisplay() {
+            // Função do timer...
+        }
+
+        function startTimer() {
+            // Função do timer...
+        }
+
+        function pauseTimer() {
+            // Função do timer...
+        }
+
+        function resetTimer() {
+            // Função do timer...
+        }
+
+        function finishTimer() {
+            // Função do timer...
+        }
+
+        // Bloqueio de botão "Voltar" do navegador após o logout
+        if (window.history && window.history.pushState) {
+            window.addEventListener('popstate', function() {
+                if (!document.cookie.includes('session_id')) { // Verifique se não há sessão válida
+                    window.location.href = '/login';  // Redireciona para a rota de login
+                }
+            });
+        }
+    </script>
+    <style>
+        // Mesmas definições de estilo...
+    </style>
+</head>
+<body>
+    <div class="menu-container" onclick="toggleMainMenu()">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-text">Menu</div>
+    </div>
+
+    <div id="menuItems"></div>
+
+    <h1 style="text-align: center;">Worktimer Mangels</h1>
+
+    <div class="timer-container">
+        <div id="timerDisplay">00:00:00</div>
+        <div class="timer-buttons">
+            <button id="startButton" onclick="startTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/play.png" alt="Iniciar" /> Iniciar
+            </button>
+            <button id="pauseButton" onclick="pauseTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/pause.png" alt="Pausar" /> Pausar
+            </button>
+            <button id="resetButton" onclick="resetTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/replay.png" alt="Reiniciar" /> Reiniciar
+            </button>
+            <button id="finishButton" onclick="finishTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/stop.png" alt="Finalizar" /> Finalizar
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+

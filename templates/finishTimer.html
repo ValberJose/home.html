@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro de Atividades</title>
+</head>
+<body>
+    <h1>Cronômetro de Atividades</h1>
+    <div id="timerDisplay">00:00:00</div>
+    <button onclick="finishTimer()">Finalizar Atividade</button>
+
+    <script>
+        let elapsedSeconds = 0;
+
+        function pauseTimer() {
+            // Função para pausar o cronômetro
+            console.log("Cronômetro pausado");
+        }
+
+        function updateTimerDisplay() {
+            // Função para atualizar o display do cronômetro
+            document.getElementById('timerDisplay').textContent = new Date(elapsedSeconds * 1000).toISOString().substr(11, 8);
+        }
+
+        function finishTimer() {
+            if (confirm('Deseja finalizar a atividade?')) {
+                pauseTimer();
+                elapsedSeconds = 0;
+                updateTimerDisplay();
+
+                const data = {
+                    atividade: 'Exemplo de Atividade',  // Troque pelo valor real
+                    empresa: 'Nome da Empresa',        // Troque pelo valor real
+                    diaInicio: '2023-10-01',           // Troque pelo valor real
+                    horaInicio: '08:00',               // Troque pelo valor real
+                    diaTermino: '2023-10-01',          // Troque pelo valor real
+                    horaTermino: '09:00',              // Troque pelo valor real
+                    tempoConclusao: '01:00',           // Troque pelo valor real
+                    responsavel: 'Nome do Usuário'     // Troque pelo valor real
+                };
+
+                fetch('/saveActivity', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);  // Mostra a mensagem de resposta do servidor
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

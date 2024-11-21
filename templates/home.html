@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCategoria('Apuração')">
+            Apuração
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('Federal')">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Ekoga')">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-17')">
+                                    0001-17
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
+                                            Pis/Cofins
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
+                                            Retidos na Fonte
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Apuração Retidos')">Apuração</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Conciliação Retidos')">Conciliação</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD Reinf')">EFD Reinf</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Manaus -->
+                       <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Manaus')">
+                            Manaus
+                                <div class="submenu">
+                                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-58')">
+                                        0001-58
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
+                                                Pis/Cofins
+                                                <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
+                                                Retidos na Fonte
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Retidos')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Retidos')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD Reinf')">EFD Reinf</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('IPI')">
+                                                IPI
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração IPI')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação IPI')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Misa -->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Misa')">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-02')" >
+                                    0001-02
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
+                                                Pis/Cofins
+                                                <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
+                                                Retidos na Fonte
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Retidos')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Retidos')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD Reinf')">EFD Reinf</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('IPI')">
+                                                IPI
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração IPI')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação IPI')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Reintegra')">
+                                                Reintegra
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração REINTEGRA')">Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('PERDCOMP')">PERDCOMP</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-02')" >
+                                    0015-08
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('PIS/COFINS')">
+                                                IPI
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração IPI')">Apuração IPI</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação IPI')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Mangels S.A -->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Mangels S.A')">
+                            Mangels S.A
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('0001-60')">
+                                    0001-40
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
+                                                Retidos na Fonte
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Retidos')">Apuração Retidos</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Retidos')">Conciliação Retidos</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD Reinf')">EFD Reinf</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Shorewood-->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Shorewood')">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('0001-40')">
+                                    0001-60
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
+                                                Retidos na Fonte
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Retidos')">Apuração Retidos</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Retidos')">Conciliação Retidos</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD Reinf')">EFD Reinf</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Tecnopar -->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Tecnopar')">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('0001-01')">
+                                    0001-01
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Retidos na Fonte')">
+                                                Retidos na Fonte
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Retidos')">Apuração Retidos</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação Retidos')">Conciliação Retidos</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD Reinf')">EFD Reinf</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('Estadual')">
+                    Estadual
+                    <div class="submenu">
+                        <!-- Ekoga -->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Ekoga')">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-17')" >
+                                    0001-17
+                                    <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Manaus -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Manaus')">
+                        Manaus
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-58')" >
+                                0001-58
+                                    <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Lançamentos Complementares')">Lançamentos Complementares</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Misa -->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Misa')">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-02')" >
+                                   0001-02
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ICMS')">Conciliação</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0004-55')" >
+                                   0004-55
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0005-36')" >
+                                   0005-36
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0015-08')" >
+                                   0015-08
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Ajustes de Apuração')">Ajustes de Apuração</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Fechamento')">Fechamento</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Lançamentos Complementares')">Lançamentos Complementares</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0016-99')" >
+                                   0016-99
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0021-56')" >
+                                   0021-56
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ICMS')">
+                                               ICMS
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração ICMS')">Apuração do ICMS</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Apuração Difal')">Difal</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('EFD ICMS')">EFD ICMS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('Municipal')">
+                    Municipal
+                    <div class="submenu">
+                        <!-- Ekoga -->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Ekoga')">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-17')" >
+                                    0001-17
+                                    <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Prestados')">Prestados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Manaus -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Manaus')">
+                        Manaus
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-58')" >
+                                0001-58
+                                    <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Misa -->
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Misa')">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-02')" >
+                                   0001-02
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0004-55')" >
+                                   0004-55
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0005-36')" >
+                                   0005-36
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0015-08')" >
+                                   0015-08
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Prestados')">Prestados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('IPTU')">
+                                               IPTU
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Prestados')">FV60</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0016-99')" >
+                                   0016-99
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0021-56')" >
+                                   0021-56
+                                        <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Mangels S.A -->
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Mangels S.A')">
+                        Mangels S.A
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-40')" >
+                                0001-40
+                                    <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Shorewood')">
+                        Shorewood
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-60')" >
+                                0001-60
+                                    <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Tecnopar')">
+                        Tecnopar
+                        <div class="submenu">
+                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-01')" >
+                                0001-01
+                                    <div class="submenu">
+                                            <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('ISSQN')">
+                                               ISSQN
+                                                <div class="submenu">
+                                                    <div class="menu-item" onclick="handleActivityClick('Tomados')">Tomados</div>
+                                                    <div class="menu-item" onclick="handleActivityClick('Conciliação ISSQN')">Conciliação</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCategoria('Demais Obrigações')">
+            Demais Obrigações
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('Federal')">
+                    Federal
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Ekoga')">
+                            Ekoga
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-17')">
+                                    0001-17
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DIRF')">DIRF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">EFD CONTRIB</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Manaus')">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-58')">
+                                    0001-58
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DIRF')">DIRF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">EFD CONTRIB</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Misa')">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-02')">
+                                    0001-02
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('PERDCOMP PISCOFINS')">PERDCOMP PISCOFINS</div>
+                                                <div class="menu-item" onclick="handleActivityClick('PERDCOMP IPI')">PERDCOMP IPI</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DIRF')">DIRF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">EFD CONTRIB</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Mangels S.A')">
+                            Mangels S.A
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-40')">
+                                    0001-40
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">EFD CONTRIB</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Shorewood')">
+                            Shorewood
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-40')">
+                                    0001-60
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">EFD CONTRIB</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Tecnopar')">
+                            Tecnopar
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-01')">
+                                    0001-01
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('DCTF')">DCTF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DIRF')">DIRF</div>
+                                                <div class="menu-item" onclick="handleActivityClick('EFD CONTRIB')">EFD CONTRIB</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('Estadual')">
+                    Estadual
+                    <div class="submenu">
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Manaus')">
+                            Manaus
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-58')">
+                                    0001-58
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('DIA')">DIA</div>
+                                                <div class="menu-item" onclick="handleActivityClick('DAM')">DAM</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Pesquisa IBGE')">Pesquisa IBGE</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Questionário SUDAM')">Questionário SUDAM</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setEmpresaNome('Misa')">
+                            Misa
+                            <div class="submenu">
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0001-02')">
+                                    0001-02
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Vaf Damef')">Vaf Damef</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0004-55')">
+                                    0004-55
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Programa nos Conformes')">Programa nos Conformes</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0015-08')">
+                                    0015-08
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('FCI')">FCI</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Fiemg')">Fiemg</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Vaf Damef')">Vaf Damef</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Parc. Regularize ICMS')">Parc. Regularize ICMS</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Envio de Relatorio de Acomp. - Protocolo de Intenções')">Envio de Relatorio de Acomp. - Protocolo de Intenções</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Taxa Regime Especial')">Taxa Regime Especial</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCodigo('0021-56')">
+                                    0021-56
+                                    <div class="submenu">
+                                        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setTributo('Declarações')">
+                                           Declarações
+                                            <div class="submenu">
+                                                <div class="menu-item" onclick="handleActivityClick('Vaf Damef')">Vaf Damef</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Taxa Regime Especial')">Taxa Regime Especial</div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setCategoria('Conferências')">
+            Conferências
+            <div class="submenu">
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('NFS-e'),setEmpresaNome('-'),setCodigo('-'),setTributo('-')">
+                    NFS-e
+                    <div class="submenu">
+                        <div class="menu-item" onclick="handleActivityClick('Manutenções')">Manutenções</div>
+                        <div class="menu-item" onclick="handleActivityClick('Gabaritos Contábeis')">Gabaritos Contábeis</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('NF-e Entrada'),setEmpresaNome('-'),setCodigo('-'),setTributo('-')">
+                    NF-e Entrada
+                    <div class="submenu">
+                        <div class="menu-item" onclick="handleActivityClick('Manutenções')">Manutenções</div>
+                        <div class="menu-item" onclick="handleActivityClick('Gabaritos Contábeis')">Gabaritos Contábeis</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('NF-e Saída'),setEmpresaNome('-'),setCodigo('-'),setTributo('-')">
+                    NF-e Saída
+                    <div class="submenu">
+                        <div class="menu-item" onclick="handleActivityClick('Manutenções')">Manutenções</div>
+                        <div class="menu-item" onclick="handleActivityClick('Gabaritos Contábeis')">Gabaritos Contábeis</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('CT-e'),setEmpresaNome('-'),setCodigo('-'),setTributo('-')">
+                    CT-e
+                    <div class="submenu">
+                        <div class="menu-item" onclick="handleActivityClick('Manutenções')">Manutenções</div>
+                        <div class="menu-item" onclick="handleActivityClick('Gabaritos Contábeis')">Gabaritos Contábeis</div>
+                    </div>
+                </div>
+                <div class="menu-item" onmouseenter="showSubmenu(this)" onmouseleave="hideSubmenu(this)" onmouseover="setAmbito('NFS-e'),setEmpresaNome('-'),setCodigo('-'),setTributo('-')">
+                    Interfaces
+                    <div class="submenu">
+                        <div class="menu-item" onclick="handleActivityClick('Cargas')">Cargas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <a href="https://app.powerbi.com/links/-Eq6umCm7e?ctid=d121f2f6-79de-4d2c-9a4d-eb164cb62fb2&pbi_source=linkShare" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Indicadores</a>
+        </div>
+                <div class="menu-item" onclick="logout()">Sair</div>
+
+    </div>
+    </div>
+
+    <div id="menuItems"></div>
+    <div class="timer-container">
+        <div id="timerDisplay">00:00:00</div>
+        <div class="timer-buttons">
+            <button onclick="startTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/play.png" alt="Iniciar" /> Iniciar
+            </button>
+            <button id="pauseButton" onclick="pauseTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/pause.png" alt="Pausar" /> Pausar
+            </button>
+            <button onclick="resetTimer()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/replay.png" alt="Reiniciar" /> Reiniciar
+            </button>
+            <button onclick="finalizeActivity()">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/stop.png" alt="Finalizar" /> Finalizar
+            </button>
+        </div>
+    </div>
+    <script>
+        // Prevent back button after logout
+        window.onload = function() {
+            if (window.history && window.history.pushState) {
+                window.history.pushState('forward', null, window.location.href);
+                window.onpopstate = function () {
+                    window.history.pushState('forward', null, window.location.href);
+                };
+            }
+        }
+    </script>
+</body>
+</html>
+    <script>
+        let activityData = {};
+        let timer;
+        let totalSeconds = 0;
+        let activityIniciada = false;
+        let activityFinalizada = false;
+        let pauseStartTime;
+
+        document.getElementById("startButton").onclick = startTimer;
+        document.getElementById("stopButton").onclick = stopTimer;
+        document.getElementById("resetButton").onclick = resetTimer;
+        function logout() {
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else {
+                    alert('Erro ao sair. Tente novamente.');
+                }
+            }).catch(error => console.error('Erro:', error));
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            totalSeconds = 0;
+            updateDisplay();
+        }
+
+        function updateTimer() {
+            totalSeconds++;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const seconds = String(totalSeconds % 60).padStart(2, '0');
+            document.getElementById("timerDisplay").textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+
+        function setCategoria(categoria) {
+            activityData.categoria = categoria || '-';
+            console.log('Categoria selecionada:', activityData.categoria);
+        }
+
+        function setAmbito(ambito) {
+            activityData.ambito = ambito || '-';
+            console.log('Âmbito selecionado:', activityData.ambito);
+        }
+
+        function setEmpresaNome(empresaNome) {
+            activityData.empresaNome = empresaNome || '-';
+            console.log('Empresa Nome selecionado:', activityData.empresaNome);
+        }
+
+        function setCodigo(codigo) {
+            activityData.codigo = codigo || 0;
+            console.log('Código selecionado:', activityData.codigo);
+        }
+
+        function setTributo(tributo) {
+            activityData.tributo = tributo || '-';
+            console.log('Tributo selecionado:', activityData.tributo);
+        }
+
+        function setTarefa(tarefa) {
+            activityData.tarefa = tarefa || '-';
+            console.log('Tarefa selecionada:', activityData.tarefa);
+        }
+
+
+        function handleActivityClick(activity) {
+            const confirmation = confirm(`Deseja iniciar a atividade ${activity}?`);
+            if (confirmation) {
+                startTimer();
+                alert(`Atividade ${activity} iniciada!`);
+
+                document.getElementById('selectedActivity').textContent = activity;
+                activityData.atividadeSelecionada = activity;
+                activityData.diaInicio = new Date().toLocaleDateString();
+                activityData.horaInicio = new Date().toLocaleTimeString();
+                activityData.responsavel = '{{ username }}';
+
+                console.log('Atividade iniciada:', activityData);
+            }
+        }
+
+
+        function finalizeActivity() {
+            const confirmation = confirm(`Deseja encerrar a atividade?`);
+            if (confirmation) {
+                stopTimer();
+                activityData.diaTermino = new Date().toLocaleDateString();
+                activityData.horaTermino = new Date().toLocaleTimeString();
+                activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
+
+                console.log('Atividade encerrada:', activityData);
+
+                fetch('/saveActivity', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(activityData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Resposta do servidor:', data);
+                    resetTimer();
+                    document.getElementById('selectedActivity').textContent = '';
+                    alert(data.message);
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+
+                alert(`Atividade ${activityData.atividadeSelecionada} finalizada!`);
+            }
+        }
+
+
+
+        function pauseTimer() {
+            console.log('Função pauseTimer chamada');
+
+            if (timer) { // Check if timer exists instead of isRunning
+                console.log('Cronômetro está em execução, pausando...');
+                clearInterval(timer);
+                pauseStartTime = new Date();
+
+                let justificativa = prompt("Digite a justificativa para a pausa:");
+
+                if (justificativa) {
+                    console.log('Justificativa inserida:', justificativa);
+
+                    const data = {
+                        atividade: activityData.atividadeSelecionada,
+                        Âmbito: activityData.ambito,
+                        'Empresa Nome': activityData.empresaNome,
+                        Código: activityData.codigo,
+                        Tributo: activityData.tributo,
+                        diaInicio: activityData.diaInicio,
+                        horaInicio: activityData.horaInicio,
+                        horaInicioDaPausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
+                        tempoDeInicio: document.getElementById('timerDisplay').textContent,
+                        responsavel: activityData.responsavel,
+                        justificativa: justificativa
+                    };
+
+                    fetch('/saveJustificativa', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                    })
+                    .catch((error) => {
+                        console.error('Erro:', error);
+                    });
+                } else {
+                    console.log('Justificativa não fornecida');
+                    startTimer(); // Resume timer if no justification provided
+                }
+            } else {
+                console.log('Cronômetro não está em execução');
+            }
+        }
+
+        function showSubmenu(element) {
+            const submenu = element.querySelector('.submenu');
+            if (submenu) {
+                submenu.style.display = 'block';
+            }
+        }
+
+        function hideSubmenu(menuItem) {
+            const submenu = menuItem.querySelector('.submenu');
+            if (submenu) {
+                submenu.style.display = 'none';
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/imagem/Tela_timer.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            flex-direction: row;
+            gap: 10px;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+
+        .activity-display {
+            min-width: 200px;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            background-color: #0099ab;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #021331;
+            border-radius: 4px;
+            z-index: 100;
+            flex-direction: column;
+            gap: 10px;
+            width: 210px;
+
+
+        }
+
+        .submenu .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+
+
+
+        }
+        .submenu .submenu {
+            top: 0;
+            left: 100%;
+
+        }
+
+        .submenu .menu-item:hover {
+            background-color: #0099ab;
+
+
+        }
+
+        .timer-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #timerDisplay {
+            font-size: 48px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .timer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0d3a78;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button img {
+            margin-right: 8px;
+        }
+    </style>
+</head>

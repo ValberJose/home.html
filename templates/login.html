@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom right, #84AFC1, #2B4865); /* Ajuste as cores */
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.1); /* Transparência */
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+        }
+        .avatar {
+            background-color: #002E5A; /* Cor do círculo do avatar */
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar img {
+            width: 150px; /* Aumenta o tamanho da imagem dentro do círculo */
+            height: 150px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 1px solid #fff; /* Borda semelhante à imagem */
+            background-color: transparent;
+            color: white;
+        }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Placeholder branco */
+        }
+        .login-button, .create-account-button {
+            background-color: #002E5A; /* Cor do botão */
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-button:hover, .create-account-button:hover {
+            background-color: #003F7D;
+        }
+        .remember-me, .forgot-password {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .remember-me {
+            margin-bottom: 20px; /* Aumenta a distância inferior */
+        }
+        .forgot-password {
+            float: right;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="avatar">
+            <img src="{{ url_for('static', filename='imagem/avatar.png') }}" alt="Avatar" class="avatar-img">
+        </div>
+        <form action="/login" method="POST">
+            <input type="text" class="input-field" name="username" placeholder="Username" required>
+            <input type="password" class="input-field" name="password" placeholder="Senha" required>
+            <a href="/recover_password" class="forgot-password">Esqueceu a senha?</a>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <form action="/create_account" method="GET">
+            <button type="submit" class="create-account-button">Criar Conta</button>
+        </form>
+    </div>
+</body>
+</html>
