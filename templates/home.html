@@ -781,208 +781,226 @@
     </script>
 </body>
 </html>
-    <script>
-        let activityData = {};
-        let timer;
-        let totalSeconds = 0;
-        let activityIniciada = false;
-        let activityFinalizada = false;
-        let pauseStartTime;
+    <link rel="stylesheet" href="styles.css">
+<script>
+    let activityData = {};
+    let timer;
+    let totalSeconds = 0;
+    let activityIniciada = false;
+    let activityFinalizada = false;
+    let pauseStartTime;
 
-        document.getElementById("startButton").onclick = startTimer;
-        document.getElementById("stopButton").onclick = stopTimer;
-        document.getElementById("resetButton").onclick = resetTimer;
-        function logout() {
-            fetch('/logout', {
+    document.getElementById("startButton").onclick = startTimer;
+    document.getElementById("stopButton").onclick = stopTimer;
+    document.getElementById("resetButton").onclick = resetTimer;
+    function logout() {
+        fetch('/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            } else {
+                alert('Erro ao sair. Tente novamente.');
+            }
+        }).catch(error => console.error('Erro:', error));
+    }
+
+    function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(updateTimer, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timer);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        totalSeconds = 0;
+        updateDisplay();
+    }
+
+    function updateTimer() {
+        totalSeconds++;
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+        const seconds = String(totalSeconds % 60).padStart(2, '0');
+        document.getElementById("timerDisplay").textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+
+    function setCategoria(categoria) {
+        activityData.categoria = categoria || '-';
+        console.log('Categoria selecionada:', activityData.categoria);
+    }
+
+    function setAmbito(ambito) {
+        activityData.ambito = ambito || '-';
+        console.log('Âmbito selecionado:', activityData.ambito);
+    }
+
+    function setEmpresaNome(empresaNome) {
+        activityData.empresaNome = empresaNome || '-';
+        console.log('Empresa Nome selecionado:', activityData.empresaNome);
+    }
+
+    function setCodigo(codigo) {
+        activityData.codigo = codigo || 0;
+        console.log('Código selecionado:', activityData.codigo);
+    }
+
+    function setTributo(tributo) {
+        activityData.tributo = tributo || '-';
+        console.log('Tributo selecionado:', activityData.tributo);
+    }
+
+    function setTarefa(tarefa) {
+        activityData.tarefa = tarefa || '-';
+        console.log('Tarefa selecionada:', activityData.tarefa);
+    }
+
+
+    function handleActivityClick(activity) {
+        const confirmation = confirm(`Deseja iniciar a atividade ${activity}?`);
+        if (confirmation) {
+            startTimer();
+            alert(`Atividade ${activity} iniciada!`);
+
+            document.getElementById('selectedActivity').textContent = activity;
+            activityData.atividadeSelecionada = activity;
+            activityData.diaInicio = new Date().toLocaleDateString();
+            activityData.horaInicio = new Date().toLocaleTimeString();
+            activityData.responsavel = '{{ username }}';
+
+            console.log('Atividade iniciada:', activityData);
+        }
+    }
+
+
+function finalizeActivity() {
+    const confirmation = confirm(`Deseja encerrar a atividade?`);
+    if (confirmation) {
+        stopTimer();
+        
+        // Format date as YYYY-MM-DD
+        const now = new Date();
+        activityData.diaTermino = now.toISOString().split('T')[0];
+        
+        // Format time as HH:MM:SS
+        activityData.horaTermino = now.toTimeString().split(' ')[0];
+        
+        activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
+
+            const dataToSend = {
+                categoria: activityData.categoria,
+                ambito: activityData.ambito,
+                empresaNome: activityData.empresaNome,
+                codigo: activityData.codigo,
+                tributo: activityData.tributo,
+                atividadeSelecionada: activityData.atividadeSelecionada,
+                diaInicio: activityData.diaInicio,
+                horaInicio: activityData.horaInicio,
+                diaTermino: activityData.diaTermino,
+                horaTermino: activityData.horaTermino,
+                tempoConclusao: activityData.tempoConclusao,
+                responsavel: activityData.responsavel
+            };
+    
+            console.log('Sending data:', dataToSend);
+    
+            fetch('/saveActivity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (response.redirected) {
-                    window.location.href = response.url;
-                } else {
-                    alert('Erro ao sair. Tente novamente.');
-                }
-            }).catch(error => console.error('Erro:', error));
+                },
+                body: JSON.stringify(dataToSend)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server response:', data);
+                resetTimer();
+                document.getElementById('selectedActivity').textContent = '';
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
+    }
 
-        function startTimer() {
+    function pauseTimer() {
+        console.log('Função pauseTimer chamada');
+
+        if (timer) { // Check if timer exists instead of isRunning
+            console.log('Cronômetro está em execução, pausando...');
             clearInterval(timer);
-            timer = setInterval(updateTimer, 1000);
-        }
+            pauseStartTime = new Date();
 
-        function stopTimer() {
-            clearInterval(timer);
-        }
+            let justificativa = prompt("Digite a justificativa para a pausa:");
 
-        function resetTimer() {
-            clearInterval(timer);
-            totalSeconds = 0;
-            updateDisplay();
-        }
+            if (justificativa) {
+                console.log('Justificativa inserida:', justificativa);
 
-        function updateTimer() {
-            totalSeconds++;
-            updateDisplay();
-        }
-
-        function updateDisplay() {
-            const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-            const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-            const seconds = String(totalSeconds % 60).padStart(2, '0');
-            document.getElementById("timerDisplay").textContent = `${hours}:${minutes}:${seconds}`;
-        }
+            const data = {
+                categoria: activityData.atividadeSelecionada,
+                ambito: activityData.ambito,
+                empresa_nome: activityData.empresaNome,
+                codigo: activityData.codigo,
+                tributo: activityData.tributo,
+                dia_inicio: activityData.diaInicio,
+                hora_inicio: activityData.horaInicio,
+                hora_inicio_pausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
+                tempo_inicio: document.getElementById('timerDisplay').textContent,
+                responsavel: activityData.responsavel,
+                justificativa: justificativa
+            };
 
 
-        function setCategoria(categoria) {
-            activityData.categoria = categoria || '-';
-            console.log('Categoria selecionada:', activityData.categoria);
-        }
-
-        function setAmbito(ambito) {
-            activityData.ambito = ambito || '-';
-            console.log('Âmbito selecionado:', activityData.ambito);
-        }
-
-        function setEmpresaNome(empresaNome) {
-            activityData.empresaNome = empresaNome || '-';
-            console.log('Empresa Nome selecionado:', activityData.empresaNome);
-        }
-
-        function setCodigo(codigo) {
-            activityData.codigo = codigo || 0;
-            console.log('Código selecionado:', activityData.codigo);
-        }
-
-        function setTributo(tributo) {
-            activityData.tributo = tributo || '-';
-            console.log('Tributo selecionado:', activityData.tributo);
-        }
-
-        function setTarefa(tarefa) {
-            activityData.tarefa = tarefa || '-';
-            console.log('Tarefa selecionada:', activityData.tarefa);
-        }
-
-
-        function handleActivityClick(activity) {
-            const confirmation = confirm(`Deseja iniciar a atividade ${activity}?`);
-            if (confirmation) {
-                startTimer();
-                alert(`Atividade ${activity} iniciada!`);
-
-                document.getElementById('selectedActivity').textContent = activity;
-                activityData.atividadeSelecionada = activity;
-                activityData.diaInicio = new Date().toLocaleDateString();
-                activityData.horaInicio = new Date().toLocaleTimeString();
-                activityData.responsavel = '{{ username }}';
-
-                console.log('Atividade iniciada:', activityData);
-            }
-        }
-
-
-        function finalizeActivity() {
-            const confirmation = confirm(`Deseja encerrar a atividade?`);
-            if (confirmation) {
-                stopTimer();
-                activityData.diaTermino = new Date().toLocaleDateString();
-                activityData.horaTermino = new Date().toLocaleTimeString();
-                activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
-
-                console.log('Atividade encerrada:', activityData);
-
-                fetch('/saveActivity', {
+                fetch('/saveJustificativa', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(activityData)
+                    body: JSON.stringify(data)
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('Resposta do servidor:', data);
-                    resetTimer();
-                    document.getElementById('selectedActivity').textContent = '';
                     alert(data.message);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error('Erro:', error);
                 });
-
-                alert(`Atividade ${activityData.atividadeSelecionada} finalizada!`);
-            }
-        }
-
-
-
-        function pauseTimer() {
-            console.log('Função pauseTimer chamada');
-
-            if (timer) { // Check if timer exists instead of isRunning
-                console.log('Cronômetro está em execução, pausando...');
-                clearInterval(timer);
-                pauseStartTime = new Date();
-
-                let justificativa = prompt("Digite a justificativa para a pausa:");
-
-                if (justificativa) {
-                    console.log('Justificativa inserida:', justificativa);
-
-                    const data = {
-                        atividade: activityData.atividadeSelecionada,
-                        Âmbito: activityData.ambito,
-                        'Empresa Nome': activityData.empresaNome,
-                        Código: activityData.codigo,
-                        Tributo: activityData.tributo,
-                        diaInicio: activityData.diaInicio,
-                        horaInicio: activityData.horaInicio,
-                        horaInicioDaPausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
-                        tempoDeInicio: document.getElementById('timerDisplay').textContent,
-                        responsavel: activityData.responsavel,
-                        justificativa: justificativa
-                    };
-
-                    fetch('/saveJustificativa', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                    })
-                    .catch((error) => {
-                        console.error('Erro:', error);
-                    });
-                } else {
-                    console.log('Justificativa não fornecida');
-                    startTimer(); // Resume timer if no justification provided
-                }
             } else {
-                console.log('Cronômetro não está em execução');
+                console.log('Justificativa não fornecida');
+                startTimer(); // Resume timer if no justification provided
             }
+        } else {
+            console.log('Cronômetro não está em execução');
         }
+    }
 
-        function showSubmenu(element) {
-            const submenu = element.querySelector('.submenu');
-            if (submenu) {
-                submenu.style.display = 'block';
-            }
+    function showSubmenu(element) {
+        const submenu = element.querySelector('.submenu');
+        if (submenu) {
+            submenu.style.display = 'block';
         }
+    }
 
-        function hideSubmenu(menuItem) {
-            const submenu = menuItem.querySelector('.submenu');
-            if (submenu) {
-                submenu.style.display = 'none';
-            }
+    function hideSubmenu(menuItem) {
+        const submenu = menuItem.querySelector('.submenu');
+        if (submenu) {
+            submenu.style.display = 'none';
         }
-    </script>
-    <link rel="stylesheet" href="styles.css">
-    <style>
+    }
+</script>
+<style>
         body {
             font-family: Arial, sans-serif;
             background-image: url('/static/imagem/Tela_timer.jpg');
