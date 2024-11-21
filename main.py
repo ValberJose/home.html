@@ -303,8 +303,16 @@ def recover_password():
         user = cur.fetchone()
         if user:
             verification_code = generate_verification_code()
-            send_email(email, "Recuperação de Senha", f"Seu código de recuperação é: {verification_code}")
-            return render_template('verify_password.html', email=email, code=verification_code)
+            send_email(
+                email, 
+                "Recuperação de Senha", 
+                f"Seu código de recuperação é: {verification_code}"
+            )
+            return render_template(
+                'verify_password.html', 
+                email=email, 
+                code=verification_code
+            )
         else:
             flash("E-mail não encontrado.", "danger")
             return redirect(url_for('recover_password'))
