@@ -37,6 +37,10 @@ def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
     try:
+        cur.execute("SET TRANSACTION READ WRITE;")
+        cur.execute("DROP TABLE IF EXISTS justificativa;")
+        cur.execute("DROP TABLE IF EXISTS tempo_atividade;")
+        cur.execute("DROP TABLE IF EXISTS usuarios_cadastros;")
         # Criação da tabela de usuários (exemplo)
         cur.execute("""
             CREATE TABLE IF NOT EXISTS usuarios_cadastros (
@@ -49,42 +53,40 @@ def create_tables():
             );
         """)
 
-        # Criação da tabela de atividades (exemplo)
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS tempo_atividade (
-                id SERIAL PRIMARY KEY,
-                categoria VARCHAR(255),
-                ambito VARCHAR(255),
-                empresa_nome VARCHAR(255),
-                codigo VARCHAR(50),
-                tributo VARCHAR(255),
-                atividade_selecionada TEXT,
-                dia_inicio DATE,
-                hora_inicio TIME,
-                dia_termino DATE,
-                hora_termino TIME,
-                tempo_conclusao INTERVAL,
-                responsavel VARCHAR(255)
-            );
-        """)
+                CREATE TABLE IF NOT EXISTS tempo_atividade (
+                    id SERIAL PRIMARY KEY,
+                    categoria VARCHAR(255),
+                    ambito VARCHAR(255),
+                    empresa_nome VARCHAR(255),
+                    codigo VARCHAR(50),
+                    tributo VARCHAR(255),
+                    atividade_selecionada TEXT,
+                    dia_inicio DATE,
+                    hora_inicio TIME,
+                    dia_termino DATE,
+                    hora_termino TIME,
+                    tempo_conclusao INTERVAL,
+                    responsavel VARCHAR(255)
+                );
+            """)
 
-        # Criação da tabela de justificativas (exemplo)
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS justificativa (
-                id SERIAL PRIMARY KEY,
-                categoria VARCHAR(255),
-                ambito VARCHAR(255),
-                empresa_nome VARCHAR(255),
-                codigo VARCHAR(50),
-                tributo VARCHAR(255),
-                dia_inicio DATE,
-                hora_inicio TIME,
-                hora_inicio_pausa TIME,
-                tempo_inicio INTERVAL,
-                responsavel VARCHAR(255),
-                justificativa TEXT
-            );
-        """)
+                CREATE TABLE IF NOT EXISTS justificativa (
+                    id SERIAL PRIMARY KEY,
+                    categoria VARCHAR(255),
+                    ambito VARCHAR(255),
+                    empresa_nome VARCHAR(255),
+                    codigo VARCHAR(50),
+                    tributo VARCHAR(255),
+                    dia_inicio DATE,
+                    hora_inicio TIME,
+                    hora_inicio_pausa TIME,
+                    tempo_inicio INTERVAL,
+                    responsavel VARCHAR(255),
+                    justificativa TEXT
+                );
+            """)
 
         conn.commit()
         logging.debug("Tabelas criadas com sucesso!")
@@ -94,6 +96,7 @@ def create_tables():
     finally:
         cur.close()
         conn.close()
+
 
 # Chama a função create_tables ao iniciar o app
 create_tables()
@@ -338,6 +341,12 @@ def reset_password():
 @app.route('/saveActivity', methods=['POST'])
 def save_activity():
     data = request.json
+    logging.debug(f"Dados recebidos para salvar atividade: {data}")
+
+    # Validação simples dos dados
+    if not all(key in data for key in ['categoria', 'ambito', 'empresaNome', 'codigo', 'tributo', 'atividadeSelecionada', 'diaInicio', 'horaInicio', 'diaTermino', 'horaTermino', 'tempoConclusao', 'responsavel']):
+        return jsonify(message="Dados incompletos para salvar a atividade."), 400
+
     conn = get_db_connection()
     cur = conn.cursor()
 
@@ -355,6 +364,7 @@ def save_activity():
             data['horaTermino'], data['tempoConclusao'], data['responsavel']
         ))
         conn.commit()
+        logging.debug("Atividade salva com sucesso!")
         return jsonify(message="Atividade salva com sucesso!"), 200
     except Exception as e:
         conn.rollback()
@@ -364,13 +374,12 @@ def save_activity():
         cur.close()
         conn.close()
 
-
 @app.route('/saveJustificativa', methods=['POST'])
 def save_justificativa():
     data = request.json
-    conn = get_db_connection()
-    cur = conn.cursor()
-
+    logging.debug(f"Dados recebidos: {data}")
+    
+    # Verifique se as chaves estão corretas
     try:
         cur.execute("""
             INSERT INTO justificativa (
@@ -379,10 +388,10 @@ def save_justificativa():
                 tempo_inicio, responsavel, justificativa
             ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
-            data['atividade'], data['Âmbito'], data['Empresa Nome'],
-            data['Código'], data['Tributo'], data['diaInicio'],
-            data['horaInicio'], data['horaInicioDaPausa'],
-            data['tempoDeInicio'], data['responsavel'], data['justificativa']
+            data['categoria'], data['ambito'], data['empresa_nome'],
+            data['codigo'], data['tributo'], data['dia_inicio'],
+            data['hora_inicio'], data['hora_inicio_pausa'],
+            data['tempo_inicio'], data['responsavel'], data['justificativa']
         ))
         conn.commit()
         return jsonify(message="Justificativa salva com sucesso!"), 200
