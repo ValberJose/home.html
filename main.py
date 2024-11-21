@@ -294,7 +294,7 @@ def recover_password():
     email = request.form['email']
     if not email:
         flash("O campo de e-mail não pode estar vazio.", "danger")
-        return redirect(url_for('recover_password_page'))
+        return redirect(url_for('recover_password'))
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -303,22 +303,15 @@ def recover_password():
         user = cur.fetchone()
         if user:
             verification_code = generate_verification_code()
-            send_email(
-                email,
-                "Recuperação de Senha",
-                f"Seu código de recuperação é: {verification_code}"
-            )
-            return render_template(
-                'verify_password.html',
-                email=email,
-                code=verification_code
-            )
+            send_email(email, "Recuperação de Senha", f"Seu código de recuperação é: {verification_code}")
+            return render_template('verify_password.html', email=email, code=verification_code)
         else:
             flash("E-mail não encontrado.", "danger")
-            return redirect(url_for('recover_password_page'))
+            return redirect(url_for('recover_password'))
     finally:
         cur.close()
         conn.close()
+
 @app.route('/verify_password', methods=['GET', 'POST'])
 def verify_password_page():
     if request.method == 'POST':
@@ -333,58 +326,42 @@ def verify_password_page():
             flash("Código de verificação incorreto!", "danger")
             return render_template('verify_password.html', email=email, code=code)
 
-    email = request.args.get('email')
-    code = request.args.get('code')
-    return render_template('verify_password.html', email=email, code=code)
-
+    # Evita acessar esta página sem os parâmetros necessários
+    flash("Operação inválida. Inicie o processo de recuperação de senha novamente.", "warning")
+    return redirect(url_for('recover_password'))
 
 @app.route('/reset_password', methods=['POST'])
 def reset_password():
     email = request.form['email']
-    verification_code = request.form.get('verification_code')
-    new_password = request.form.get('new_password')
+    new_password = request.form['new_password']
 
+    if not email or not new_password:
+        flash("Todos os campos são obrigatórios.", "danger")
+        return redirect(url_for('recover_password'))
 
-    if email and not verification_code and not new_password:
-        verification_code = generate_verification_code()
-        try:
-            send_email(email, "Código de Recuperação de Senha",
-                      f"Seu código de recuperação é: {verification_code}")
-            return render_template('verify_password.html',
-                                email=email,
-                                code=verification_code)
-        except Exception as e:
-            flash("Erro ao enviar código de verificação.", "danger")
-            return redirect(url_for('recover_password'))
+    if not validate_password(new_password):
+        flash("A senha deve conter pelo menos uma letra maiúscula, um caractere especial e um número.", "danger")
+        return render_template('reset_password.html', email=email)
 
-
-    if verification_code and new_password:
-        if not all(validate_password(new_password)):
-            flash("A senha deve conter pelo menos uma letra maiúscula, um caractere especial e um número.", "danger")
-            return render_template('reset_password.html', email=email)
-
-        conn = get_db_connection()
-        cur = conn.cursor()
-        try:
-            hashed_password = generate_password_hash(new_password)
-            cur.execute("UPDATE usuarios_cadastros SET senha = %s WHERE email = %s",
-                        (hashed_password, email))
-            conn.commit()
-            logging.debug("Password reset successful for email: %s", email)
-            flash("Senha redefinida com sucesso!", "success")
-            response = make_response(redirect(url_for('login_page')))
-            response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-            return response
-        except Exception as e:
-            conn.rollback()
-            logging.error("Password reset failed: %s", str(e))
-            flash("Erro ao redefinir senha.", "danger")
-            return render_template('reset_password.html', email=email)
-        finally:
-            cur.close()
-            conn.close()
-
-    return redirect(url_for('recover_password'))
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        hashed_password = generate_password_hash(new_password)
+        cur.execute("UPDATE usuarios_cadastros SET senha = %s WHERE email = %s", (hashed_password, email))
+        conn.commit()
+        flash("Senha redefinida com sucesso!", "success")
+        response = make_response(redirect(url_for('login_page')))
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
+    except Exception as e:
+        conn.rollback()
+        flash("Erro ao redefinir senha. Tente novamente.", "danger")
+        return render_template('reset_password.html', email=email)
+    finally:
+        cur.close()
+        conn.close()
 
 
 # Função para validar datas
