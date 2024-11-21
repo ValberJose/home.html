@@ -14,6 +14,7 @@ from flask import make_response
 import psycopg2
 from psycopg2.extras import DictCursor
 from urllib.parse import urlparse
+from datetime import datetime
 
 logging.basicConfig(level=logging.DEBUG)
 load_dotenv()
@@ -373,10 +374,16 @@ def validate_date(date_string):
         return False
 
 
-# Função para validar horários
+def validate_date(date_string):
+    try:
+        datetime.datetime.strptime(date_string, '%Y-%m-%d')
+        return True
+    except ValueError:
+        return False
+
 def validate_time(time_string):
     try:
-        datetime.strptime(time_string, '%H:%M:%S')
+        datetime.datetime.strptime(time_string, '%H:%M:%S')
         return True
     except ValueError:
         return False
@@ -395,7 +402,6 @@ def save_activity():
         'atividadeSelecionada', 'diaInicio', 'horaInicio',
         'diaTermino', 'horaTermino', 'tempoConclusao', 'responsavel'
     ]
-
     missing_fields = [field for field in required_fields if field not in data or not data[field]]
     if missing_fields:
         logging.error(f"Campos ausentes ou inválidos: {', '.join(missing_fields)}")
