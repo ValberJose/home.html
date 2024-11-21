@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+yfrom flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 import os
 import smtplib
 import json
@@ -312,7 +312,7 @@ def recover_password():
         conn.close()
 
 
-@app.route('/reset_password', methods=['POST'])
+@app.route('/verify_password', methods=['POST'])
 def reset_password():
     email = request.form['email']
     new_password = request.form['new_password']
