@@ -887,10 +887,10 @@
 function finalizeActivity() {
     const confirmation = confirm(`Deseja encerrar a atividade?`);
     if (confirmation) {
-        stopTimer();
+        stopTimer(); // Pausa o cronômetro
 
         const now = new Date();
-        const dataToSend = {
+         const dataToSend = {
             categoria: activityData.categoria,
             ambito: activityData.ambito,
             empresaNome: activityData.empresaNome,
@@ -902,10 +902,10 @@ function finalizeActivity() {
             diaTermino: now.toISOString().split('T')[0],
             horaTermino: now.toTimeString().split(' ')[0],
             tempoConclusao: document.getElementById("timerDisplay").textContent,
-            responsavel: document.querySelector('[data-username]').dataset.username
+            responsavel: '{{ session.get("user") }}'
         };
 
-        console.log('Sending data:', dataToSend);
+        console.log('Enviando os dados para salvar atividade:', dataToSend);
 
         fetch('/saveActivity', {
             method: 'POST',
@@ -914,15 +914,20 @@ function finalizeActivity() {
             },
             body: JSON.stringify(dataToSend)
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na resposta da rede');
+            }
+            return response.json();
+        })
         .then(data => {
-            console.log('Server response:', data);
-            resetTimer();
-            document.getElementById('selectedActivity').textContent = '';
+            console.log('Resposta do servidor:', data);
+            resetTimer(); // Reseta o cronômetro
+            document.getElementById('selectedActivity').textContent = ''; // Limpa a atividade selecionada
             alert('Atividade salva com sucesso!');
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Erro ao salvar a atividade:', error);
             alert('Erro ao salvar atividade. Verifique o console para mais detalhes.');
         });
     }
