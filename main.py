@@ -338,41 +338,88 @@ def reset_password():
         conn.close()
 
 
-@app.route('/saveActivity', methods=['POST'])
-def save_activity():
-    data = request.json
+# Função para validar datas
+def validate_date(date_string):
+    try:
+        datetime.strptime(date_string, '%Y-%m-%d')
+        return True
+    except ValueError:
+        return False
+
+# Função para validar horários
+def validate_time(time_string):
+    try:
+        datetime.strptime(time_string, '%H:%M:%S')
+        return True
+    except ValueError:
+        return False
+
+# Função para salvar atividade
+def save_activity(conn):
+    data = request.get_json()
+
+    # Log dos dados recebidos
     logging.debug(f"Dados recebidos para salvar atividade: {data}")
 
-    # Validação simples dos dados
-    if not all(key in data for key in ['categoria', 'ambito', 'empresaNome', 'codigo', 'tributo', 'atividadeSelecionada', 'diaInicio', 'horaInicio', 'diaTermino', 'horaTermino', 'tempoConclusao', 'responsavel']):
-        return jsonify(message="Dados incompletos para salvar a atividade."), 400
+    # Validação básica
+    required_fields = [
+        'categoria', 'ambito', 'empresaNome', 'codigo', 'tributo',
+        'atividadeSelecionada', 'diaInicio', 'horaInicio',
+        'diaTermino', 'horaTermino', 'tempoConclusao', 'responsavel'
+    ]
 
-    conn = get_db_connection()
-    cur = conn.cursor()
+    missing_fields = [field for field in required_fields if field not in data or not data[field]]
+    if missing_fields:
+        return jsonify(message=f"Campos ausentes ou inválidos: {', '.join(missing_fields)}"), 400
+
+    # Validação de datas e horários
+    if not validate_date(data['diaInicio']):
+        return jsonify(message="Data de início inválida. Use o formato YYYY-MM-DD."), 400
+    if not validate_date(data['diaTermino']):
+        return jsonify(message="Data de término inválida. Use o formato YYYY-MM-DD."), 400
+    if not validate_time(data['horaInicio']):
+        return jsonify(message="Hora de início inválida. Use o formato HH:MM:SS."), 400
+    if not validate_time(data['horaTermino']):
+        return jsonify(message="Hora de término inválida. Use o formato HH:MM:SS."), 400
+
+    # Preparando os dados
+    categoria = data['categoria']
+    ambito = data['ambito']
+    empresa_nome = data['empresaNome']
+    codigo = data['codigo']
+    tributo = data['tributo']
+    atividade_selecionada = data['atividadeSelecionada']
+    dia_inicio = data['diaInicio']
+    hora_inicio = data['horaInicio']
+    dia_termino = data['diaTermino']
+    hora_termino = data['horaTermino']
+    tempo_conclusao = data['tempoConclusao']
+    responsavel = data['responsavel']
 
     try:
-        cur.execute("""
-            INSERT INTO tempo_atividade (
+        # Executando a consulta
+        with conn.cursor() as cur:
+            cur.execute("""
+                INSERT INTO tempo_atividade (
+                    categoria, ambito, empresa_nome, codigo, tributo,
+                    atividade_selecionada, dia_inicio, hora_inicio,
+                    dia_termino, hora_termino, tempo_conclusao, responsavel
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (
                 categoria, ambito, empresa_nome, codigo, tributo,
                 atividade_selecionada, dia_inicio, hora_inicio,
                 dia_termino, hora_termino, tempo_conclusao, responsavel
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """, (
-            data['categoria'], data['ambito'], data['empresaNome'],
-            data['codigo'], data['tributo'], data['atividadeSelecionada'],
-            data['diaInicio'], data['horaInicio'], data['diaTermino'],
-            data['horaTermino'], data['tempoConclusao'], data['responsavel']
-        ))
-        conn.commit()
+            ))
+            conn.commit()
+
         logging.debug("Atividade salva com sucesso!")
         return jsonify(message="Atividade salva com sucesso!"), 200
+
     except Exception as e:
-        conn.rollback()
         logging.error(f"Erro ao salvar atividade: {e}")
-        return jsonify(message="Erro ao salvar a atividade."), 500
-    finally:
-        cur.close()
-        conn.close()
+        conn.rollback()
+        return jsonify(message=f"Erro ao salvar a atividade: {str(e)}"), 500
+
 
 @app.route('/saveJustificativa', methods=['POST'])
 def save_justificativa():
