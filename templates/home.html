@@ -887,25 +887,25 @@
 function finalizeActivity() {
     const confirmation = confirm(`Deseja encerrar a atividade?`);
     if (confirmation) {
-        stopTimer();
+        stopTimer(); // Pausa o cronômetro
 
         const now = new Date();
         const dataToSend = {
             categoria: activityData.categoria,
             ambito: activityData.ambito,
-            empresa_nome: activityData.empresaNome, // Changed to match DB column
+            empresa_nome: activityData.empresaNome, // Nome da empresa
             codigo: activityData.codigo,
             tributo: activityData.tributo,
-            atividade_selecionada: activityData.atividadeSelecionada, // Changed to match DB column
-            dia_inicio: now.toISOString().split('T')[0],
-            hora_inicio: now.toTimeString().split(' ')[0],
-            dia_termino: now.toISOString().split('T')[0],
-            hora_termino: now.toTimeString().split(' ')[0],
-            tempo_conclusao: document.getElementById("timerDisplay").textContent,
-            responsavel: '{{ session.get("user") }}'
+            atividade_selecionada: activityData.atividadeSelecionada, // Atividade
+            dia_inicio: now.toISOString().split('T')[0], // Data no formato YYYY-MM-DD
+            hora_inicio: now.toTimeString().split(' ')[0], // Hora no formato HH:MM:SS
+            dia_termino: now.toISOString().split('T')[0], // Data no formato YYYY-MM-DD
+            hora_termino: now.toTimeString().split(' ')[0], // Hora no formato HH:MM:SS
+            tempo_conclusao: formatTimeInterval(document.getElementById("timerDisplay").textContent), // HH:MM:SS formatado como intervalo
+            responsavel: '{{ session.get("user") }}' // Usuário responsável
         };
 
-        console.log('Sending data:', dataToSend);
+        console.log('Enviando os dados para salvar atividade:', dataToSend);
 
         fetch('/saveActivity', {
             method: 'POST',
@@ -916,23 +916,22 @@ function finalizeActivity() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Erro na resposta da rede');
             }
             return response.json();
         })
         .then(data => {
-            console.log('Server response:', data);
-            resetTimer();
-            document.getElementById('selectedActivity').textContent = '';
+            console.log('Resposta do servidor:', data);
+            resetTimer(); // Reseta o cronômetro
+            document.getElementById('selectedActivity').textContent = ''; // Limpa a atividade selecionada
             alert('Atividade salva com sucesso!');
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Erro ao salvar a atividade:', error);
             alert('Erro ao salvar atividade. Verifique o console para mais detalhes.');
         });
     }
 }
-
 
 function pauseTimer() {
     console.log('Função pauseTimer chamada');
@@ -940,12 +939,12 @@ function pauseTimer() {
     if (timer) {
         console.log('Cronômetro está em execução, pausando...');
         clearInterval(timer);
-        pauseStartTime = new Date();
+        pauseStartTime = new Date(); // Captura o momento da pausa
 
         let justificativa = prompt("Digite a justificativa para a pausa:");
 
         if (justificativa) {
-            console.log('Justificativa inserida:', justificativa);
+            console.log('Justificativa fornecida:', justificativa);
 
             const now = new Date();
             const data = {
@@ -954,15 +953,15 @@ function pauseTimer() {
                 empresa_nome: activityData.empresaNome,
                 codigo: activityData.codigo,
                 tributo: activityData.tributo,
-                dia_inicio: now.toISOString().split('T')[0],
-                hora_inicio: now.toTimeString().split(' ')[0],
-                hora_inicio_pausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
-                tempo_inicio: document.getElementById('timerDisplay').textContent,
-                responsavel: document.querySelector('[data-username]').dataset.username,
-                justificativa: justificativa
+                dia_inicio: now.toISOString().split('T')[0], // Data no formato YYYY-MM-DD
+                hora_inicio: now.toTimeString().split(' ')[0], // Hora no formato HH:MM:SS
+                hora_inicio_pausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`, // Formato HH:MM:SS
+                tempo_inicio: formatTimeInterval(document.getElementById('timerDisplay').textContent), // Tempo formatado como intervalo
+                responsavel: document.querySelector('[data-username]').dataset.username, // Usuário logado
+                justificativa: justificativa // Justificativa fornecida
             };
 
-            console.log('Sending data:', data);
+            console.log('Enviando os dados para salvar justificativa:', data);
 
             fetch('/saveJustificativa', {
                 method: 'POST',
@@ -971,20 +970,39 @@ function pauseTimer() {
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da rede');
+                }
+                return response.json();
+            })
             .then(data => {
                 alert(data.message);
             })
-            .catch((error) => {
-                console.error('Erro:', error);
+            .catch(error => {
+                console.error('Erro ao salvar justificativa:', error);
+                alert('Erro ao salvar justificativa. Verifique o console para mais detalhes.');
             });
         } else {
-            console.log('Justificativa não fornecida');
+            console.log('Nenhuma justificativa fornecida. Reiniciando o cronômetro.');
             startTimer();
         }
     } else {
-        console.log('Cronômetro não está em execução');
+        console.log('Cronômetro não está em execução.');
     }
+}
+
+// Função auxiliar para converter o tempo no formato HH:MM:SS
+function formatTimeInterval(timerString) {
+    const parts = timerString.split(':');
+    if (parts.length === 3) {
+        const hours = parseInt(parts[0], 10);
+        const minutes = parseInt(parts[1], 10);
+        const seconds = parseInt(parts[2], 10);
+        return `${hours}:${minutes}:${seconds}`;
+    }
+    console.warn('Formato de tempo inválido:', timerString);
+    return '00:00:00'; // Retorna zero se o formato for inválido
 }
 
 
