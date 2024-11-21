@@ -377,9 +377,20 @@ def save_activity():
 @app.route('/saveJustificativa', methods=['POST'])
 def save_justificativa():
     data = request.json
-    logging.debug(f"Dados recebidos: {data}")
+    logging.debug(f"Dados recebidos para salvar justificativa: {data}")
     
-    # Verifique se as chaves estão corretas
+    # Validando as chaves do JSON
+    required_keys = [
+        'categoria', 'ambito', 'empresa_nome', 'codigo', 'tributo',
+        'dia_inicio', 'hora_inicio', 'hora_inicio_pausa',
+        'tempo_inicio', 'responsavel', 'justificativa'
+    ]
+    if not all(key in data for key in required_keys):
+        logging.error("JSON incompleto ou inválido.")
+        return jsonify(message="Dados incompletos para salvar a justificativa."), 400
+
+    conn = get_db_connection()
+    cur = conn.cursor()
     try:
         cur.execute("""
             INSERT INTO justificativa (
@@ -394,6 +405,7 @@ def save_justificativa():
             data['tempo_inicio'], data['responsavel'], data['justificativa']
         ))
         conn.commit()
+        logging.debug("Justificativa salva com sucesso!")
         return jsonify(message="Justificativa salva com sucesso!"), 200
     except Exception as e:
         conn.rollback()
