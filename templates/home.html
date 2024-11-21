@@ -893,15 +893,15 @@ function finalizeActivity() {
          const dataToSend = {
             categoria: activityData.categoria,
             ambito: activityData.ambito,
-            empresaNome: activityData.empresaNome,  // Ajustado para corresponder ao backend
+            empresaNome: activityData.empresaNome,  
             codigo: activityData.codigo,
             tributo: activityData.tributo,
-            activityData.atividadeSelecionada = activity; // Ajustado para corresponder ao backend
-            diaInicio: now.toISOString().split('T')[0],  // Ajustado para corresponder ao backend
-            horaInicio: now.toTimeString().split(' ')[0],  // Ajustado para corresponder ao backend
-            diaTermino: now.toISOString().split('T')[0],  // Ajustado para corresponder ao backend
-            horaTermino: now.toTimeString().split(' ')[0],  // Ajustado para corresponder ao backend
-            tempoConclusao: document.getElementById("timerDisplay").textContent,  // Ajustado para corresponder ao backend
+            atividadeSelecionada: activityData.tarefa, 
+            diaInicio: now.toISOString().split('T')[0],  
+            horaInicio: now.toTimeString().split(' ')[0],  
+            diaTermino: now.toISOString().split('T')[0],  
+            horaTermino: now.toTimeString().split(' ')[0],  
+            tempoConclusao: document.getElementById("timerDisplay").textContent,  
             responsavel: '{{ session.get("user") }}'
         };
 
