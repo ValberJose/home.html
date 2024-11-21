@@ -21,7 +21,6 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
 
-
 def get_db_connection():
     DATABASE_URL = os.getenv('DATABASE_URL')
     result = urlparse(DATABASE_URL)
@@ -33,6 +32,8 @@ def get_db_connection():
         port=result.port
     )
     return connection
+
+
 def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -346,6 +347,7 @@ def validate_date(date_string):
     except ValueError:
         return False
 
+
 # Função para validar horários
 def validate_time(time_string):
     try:
@@ -353,6 +355,7 @@ def validate_time(time_string):
         return True
     except ValueError:
         return False
+
 
 @app.route('/saveActivity', methods=['POST'])
 def save_activity():
@@ -426,24 +429,25 @@ def save_activity():
         if conn:
             conn.close()
 
+
 # Função para salvar justificativa
 @app.route('/saveJustificativa', methods=['POST'])
 def save_justificativa():
     data = request.json
     logging.debug(f"Dados recebidos para salvar justificativa: {data}")
-    
+
     # Chaves obrigatórias
     required_keys = [
         'categoria', 'ambito', 'empresa_nome', 'codigo', 'tributo',
         'dia_inicio', 'hora_inicio', 'hora_inicio_pausa',
         'tempo_inicio', 'responsavel', 'justificativa'
     ]
-    
+
     missing_keys = [key for key in required_keys if key not in data or not data[key]]
     if missing_keys:
         logging.error(f"JSON incompleto. Campos ausentes: {', '.join(missing_keys)}")
         return jsonify(message=f"Dados incompletos: {', '.join(missing_keys)}"), 400
-    
+
     # Validação de formato (datas e horários)
     if not validate_date(data['dia_inicio']):
         return jsonify(message="Data de início inválida. Use o formato YYYY-MM-DD."), 400
@@ -476,7 +480,6 @@ def save_justificativa():
         return jsonify(message=f"Erro ao salvar a justificativa: {str(e)}"), 500
     finally:
         conn.close()
-
 
 
 @app.route('/home_page')
@@ -512,4 +515,3 @@ def add_security_headers(response):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
