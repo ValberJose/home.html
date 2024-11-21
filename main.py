@@ -354,8 +354,8 @@ def validate_time(time_string):
     except ValueError:
         return False
 
-# Função para salvar atividade
-def save_activity(conn):
+@app.route('/saveActivity', methods=['POST'])
+def save_activity():
     data = request.get_json()
 
     # Log dos dados recebidos
@@ -370,6 +370,7 @@ def save_activity(conn):
 
     missing_fields = [field for field in required_fields if field not in data or not data[field]]
     if missing_fields:
+        logging.error(f"Campos ausentes ou inválidos: {', '.join(missing_fields)}")
         return jsonify(message=f"Campos ausentes ou inválidos: {', '.join(missing_fields)}"), 400
 
     # Validação de datas e horários
@@ -396,8 +397,9 @@ def save_activity(conn):
     tempo_conclusao = data['tempoConclusao']
     responsavel = data['responsavel']
 
+    conn = None
     try:
-        # Executando a consulta
+        conn = get_db_connection()
         with conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO tempo_atividade (
@@ -410,20 +412,25 @@ def save_activity(conn):
                 atividade_selecionada, dia_inicio, hora_inicio,
                 dia_termino, hora_termino, tempo_conclusao, responsavel
             ))
-            conn.commit()
-
+        conn.commit()
         logging.debug("Atividade salva com sucesso!")
         return jsonify(message="Atividade salva com sucesso!"), 200
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         logging.error(f"Erro ao salvar atividade: {e}")
-        conn.rollback()
         return jsonify(message=f"Erro ao salvar a atividade: {str(e)}"), 500
+
+    finally:
+        if conn:
+            conn.close()
+
 
 
 @app.route('/saveJustificativa', methods=['POST'])
 def save_justificativa():
-    data = request.json
+    data = request.get_json()
     logging.debug(f"Dados recebidos para salvar justificativa: {data}")
     
     # Validando as chaves do JSON
@@ -432,35 +439,61 @@ def save_justificativa():
         'dia_inicio', 'hora_inicio', 'hora_inicio_pausa',
         'tempo_inicio', 'responsavel', 'justificativa'
     ]
-    if not all(key in data for key in required_keys):
-        logging.error("JSON incompleto ou inválido.")
-        return jsonify(message="Dados incompletos para salvar a justificativa."), 400
+    missing_keys = [key for key in required_keys if key not in data or not data[key]]
+    if missing_keys:
+        logging.error(f"Campos ausentes ou inválidos: {', '.join(missing_keys)}")
+        return jsonify(message=f"Campos ausentes ou inválidos: {', '.join(missing_keys)}"), 400
 
-    conn = get_db_connection()
-    cur = conn.cursor()
+    # Validação de datas e horários
+    if not validate_date(data['dia_inicio']):
+        return jsonify(message="Data de início inválida. Use o formato YYYY-MM-DD."), 400
+    if not validate_time(data['hora_inicio']):
+        return jsonify(message="Hora de início inválida. Use o formato HH:MM:SS."), 400
+    if not validate_time(data['hora_inicio_pausa']):
+        return jsonify(message="Hora de início da pausa inválida. Use o formato HH:MM:SS."), 400
+
+    # Preparando os dados
+    categoria = data['categoria']
+    ambito = data['ambito']
+    empresa_nome = data['empresa_nome']
+    codigo = data['codigo']
+    tributo = data['tributo']
+    dia_inicio = data['dia_inicio']
+    hora_inicio = data['hora_inicio']
+    hora_inicio_pausa = data['hora_inicio_pausa']
+    tempo_inicio = data['tempo_inicio']
+    responsavel = data['responsavel']
+    justificativa = data['justificativa']
+
+    conn = None
     try:
-        cur.execute("""
-            INSERT INTO justificativa (
+        conn = get_db_connection()
+        with conn.cursor() as cur:
+            cur.execute("""
+                INSERT INTO justificativa (
+                    categoria, ambito, empresa_nome, codigo, tributo,
+                    dia_inicio, hora_inicio, hora_inicio_pausa,
+                    tempo_inicio, responsavel, justificativa
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (
                 categoria, ambito, empresa_nome, codigo, tributo,
                 dia_inicio, hora_inicio, hora_inicio_pausa,
                 tempo_inicio, responsavel, justificativa
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """, (
-            data['categoria'], data['ambito'], data['empresa_nome'],
-            data['codigo'], data['tributo'], data['dia_inicio'],
-            data['hora_inicio'], data['hora_inicio_pausa'],
-            data['tempo_inicio'], data['responsavel'], data['justificativa']
-        ))
+            ))
         conn.commit()
         logging.debug("Justificativa salva com sucesso!")
         return jsonify(message="Justificativa salva com sucesso!"), 200
+
     except Exception as e:
-        conn.rollback()
+        if conn:
+            conn.rollback()
         logging.error(f"Erro ao salvar justificativa: {e}")
-        return jsonify(message="Erro ao salvar a justificativa."), 500
+        return jsonify(message=f"Erro ao salvar a justificativa: {str(e)}"), 500
+
     finally:
-        cur.close()
-        conn.close()
+        if conn:
+            conn.close()
+
 
 
 @app.route('/home_page')
