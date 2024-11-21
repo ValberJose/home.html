@@ -1,4 +1,4 @@
-yfrom flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 import os
 import smtplib
 import json
@@ -14,7 +14,7 @@ from flask import make_response
 import psycopg2
 from psycopg2.extras import DictCursor
 from urllib.parse import urlparse
-from datetime import datetime
+
 logging.basicConfig(level=logging.DEBUG)
 load_dotenv()
 app = Flask(__name__)
@@ -312,7 +312,7 @@ def recover_password():
         conn.close()
 
 
-@app.route('/verify_password', methods=['POST'])
+@app.route('/reset_password', methods=['POST'])
 def reset_password():
     email = request.form['email']
     new_password = request.form['new_password']
@@ -426,25 +426,25 @@ def save_activity():
         if conn:
             conn.close()
 
-
-
+# Função para salvar justificativa
 @app.route('/saveJustificativa', methods=['POST'])
 def save_justificativa():
-    data = request.get_json()
+    data = request.json
     logging.debug(f"Dados recebidos para salvar justificativa: {data}")
     
-    # Validando as chaves do JSON
+    # Chaves obrigatórias
     required_keys = [
         'categoria', 'ambito', 'empresa_nome', 'codigo', 'tributo',
         'dia_inicio', 'hora_inicio', 'hora_inicio_pausa',
         'tempo_inicio', 'responsavel', 'justificativa'
     ]
+    
     missing_keys = [key for key in required_keys if key not in data or not data[key]]
     if missing_keys:
-        logging.error(f"Campos ausentes ou inválidos: {', '.join(missing_keys)}")
-        return jsonify(message=f"Campos ausentes ou inválidos: {', '.join(missing_keys)}"), 400
-
-    # Validação de datas e horários
+        logging.error(f"JSON incompleto. Campos ausentes: {', '.join(missing_keys)}")
+        return jsonify(message=f"Dados incompletos: {', '.join(missing_keys)}"), 400
+    
+    # Validação de formato (datas e horários)
     if not validate_date(data['dia_inicio']):
         return jsonify(message="Data de início inválida. Use o formato YYYY-MM-DD."), 400
     if not validate_time(data['hora_inicio']):
@@ -452,22 +452,8 @@ def save_justificativa():
     if not validate_time(data['hora_inicio_pausa']):
         return jsonify(message="Hora de início da pausa inválida. Use o formato HH:MM:SS."), 400
 
-    # Preparando os dados
-    categoria = data['categoria']
-    ambito = data['ambito']
-    empresa_nome = data['empresa_nome']
-    codigo = data['codigo']
-    tributo = data['tributo']
-    dia_inicio = data['dia_inicio']
-    hora_inicio = data['hora_inicio']
-    hora_inicio_pausa = data['hora_inicio_pausa']
-    tempo_inicio = data['tempo_inicio']
-    responsavel = data['responsavel']
-    justificativa = data['justificativa']
-
-    conn = None
+    conn = get_db_connection()
     try:
-        conn = get_db_connection()
         with conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO justificativa (
@@ -476,23 +462,20 @@ def save_justificativa():
                     tempo_inicio, responsavel, justificativa
                 ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, (
-                categoria, ambito, empresa_nome, codigo, tributo,
-                dia_inicio, hora_inicio, hora_inicio_pausa,
-                tempo_inicio, responsavel, justificativa
+                data['categoria'], data['ambito'], data['empresa_nome'],
+                data['codigo'], data['tributo'], data['dia_inicio'],
+                data['hora_inicio'], data['hora_inicio_pausa'],
+                data['tempo_inicio'], data['responsavel'], data['justificativa']
             ))
-        conn.commit()
-        logging.debug("Justificativa salva com sucesso!")
-        return jsonify(message="Justificativa salva com sucesso!"), 200
-
+            conn.commit()
+            logging.debug("Justificativa salva com sucesso!")
+            return jsonify(message="Justificativa salva com sucesso!"), 200
     except Exception as e:
-        if conn:
-            conn.rollback()
+        conn.rollback()
         logging.error(f"Erro ao salvar justificativa: {e}")
         return jsonify(message=f"Erro ao salvar a justificativa: {str(e)}"), 500
-
     finally:
-        if conn:
-            conn.close()
+        conn.close()
 
 
 
@@ -529,3 +512,4 @@ def add_security_headers(response):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
