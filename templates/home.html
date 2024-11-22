@@ -25,7 +25,7 @@
                                                 <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
-                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Fechamento e Suporte')">Fechamento e Suporte</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
                                                 <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
                                             </div>
@@ -55,7 +55,7 @@
                                                 <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
-                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Fechamento e Suporte')">Fechamento e Suporte</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
                                                 <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
                                                 </div>
@@ -92,7 +92,7 @@
                                                 <div class="menu-item" onclick="handleActivityClick('Entradas')">Entradas</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Saídas')">Saídas</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Bloco F')">Bloco F</div>
-                                                <div class="menu-item" onclick="handleActivityClick('Bloco F')">Fechamento e Suporte</div>
+                                                <div class="menu-item" onclick="handleActivityClick('Fechamento e Suporte')">Fechamento e Suporte</div>
                                                 <div class="menu-item" onclick="handleActivityClick('Conciliação Pis/Cofins')">Conciliação</div>
                                                 <div class="menu-item" onclick="handleActivityClick('EFD Contribuições')">EFD Contribuições</div>
                                                 </div>
@@ -897,24 +897,20 @@ function formatDateForServer(dateStr) {
 
 function finalizeActivity() {
     if (!activityData.atividadeSelecionada) {
-        console.log('Tentativa de finalizar sem atividade ativa');
-        alert('Selecione uma atividade antes de finalizar.');
+        alert('Nenhuma atividade está em andamento para finalizar.');
         return;
     }
 
     const confirmation = confirm(`Deseja encerrar a atividade ${activityData.atividadeSelecionada}?`);
     if (confirmation) {
         stopTimer();
-
+        
         const finalData = {
             ...activityData,
-            diaInicio: formatDateForServer(activityData.diaInicio),
-            diaTermino: formatDateForServer(new Date().toLocaleDateString()),
+            diaTermino: new Date().toLocaleDateString(),
             horaTermino: new Date().toLocaleTimeString(),
             tempoConclusao: document.getElementById("timerDisplay").textContent
         };
-
-        console.log('Dados completos antes de salvar:', finalData);
 
         fetch('/saveActivity', {
             method: 'POST',
@@ -924,22 +920,15 @@ function finalizeActivity() {
             },
             body: JSON.stringify(finalData)
         })
-        .then(response => {
-            if (response.headers.get('content-type')?.includes('application/json')) {
-                return response.json().then(data => {
-                    if (!response.ok) {
-                        throw new Error(data.error || 'Erro no servidor');
-                    }
-                    return data;
-                });
-            }
-            throw new Error('Resposta inválida do servidor');
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log('Resposta do servidor:', data);
             const savedActivity = finalData.atividadeSelecionada;
             resetTimer();
-            document.getElementById('selectedActivity').textContent = '';
+            // Only try to update element if it exists
+            const selectedActivityElement = document.getElementById('selectedActivity');
+            if (selectedActivityElement) {
+                selectedActivityElement.textContent = '';
+            }
             activityData = {};
             alert(`Atividade ${savedActivity} finalizada e salva com sucesso!`);
         })
