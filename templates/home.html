@@ -884,35 +884,38 @@
 
 
 function finalizeActivity() {
-    const confirmation = confirm(`Deseja encerrar a atividade?`);
+    const confirmation = confirm(`Deseja encerrar a atividade ${activityData.atividadeSelecionada}?`);
     if (confirmation) {
         stopTimer();
         activityData.diaTermino = new Date().toLocaleDateString();
         activityData.horaTermino = new Date().toLocaleTimeString();
-        activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
+        tempoConclusao: document.getElementById("timerDisplay").textContent
 
         fetch('/saveActivity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(activityData)
+            body: JSON.stringify(finalActivityData)
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na resposta do servidor');
+            }
+            return response.json();
+        })
         .then(data => {
-            console.log('Resposta do servidor:', data);
-            const currentActivity = activityData.atividadeSelecionada;
+            alert(`Atividade ${finalActivityData.atividadeSelecionada} finalizada e salva com sucesso!`);
             resetTimer();
             document.getElementById('selectedActivity').textContent = '';
-            alert(data.message);
-            alert(`Atividade ${currentActivity} finalizada!`);
+            activityData = {}; // Clear activity data after successful save
         })
         .catch(error => {
+            alert('Erro ao salvar a atividade. Por favor, tente novamente.');
             console.error('Erro:', error);
         });
     }
 }
-
 
 
         function pauseTimer() {
