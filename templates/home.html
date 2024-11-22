@@ -884,12 +884,19 @@
 
 
 function finalizeActivity() {
+    if (!activityData.atividadeSelecionada) {
+        alert('Nenhuma atividade está em andamento para finalizar.');
+        return;
+    }
+
     const confirmation = confirm(`Deseja encerrar a atividade ${activityData.atividadeSelecionada}?`);
     if (confirmation) {
         stopTimer();
         activityData.diaTermino = new Date().toLocaleDateString();
         activityData.horaTermino = new Date().toLocaleTimeString();
-        tempoConclusao: document.getElementById("timerDisplay").textContent
+        activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
+
+        console.log('Dados da atividade antes de salvar:', activityData);
 
         fetch('/saveActivity', {
             method: 'POST',
