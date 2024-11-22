@@ -892,7 +892,7 @@
 
 function finalizeActivity() {
     console.log('Estado atual de activityData:', activityData);
-
+    
     if (!activityData.atividadeSelecionada) {
         console.log('Tentativa de finalizar sem atividade ativa');
         alert('Selecione uma atividade antes de finalizar.');
@@ -902,37 +902,43 @@ function finalizeActivity() {
     const confirmation = confirm(`Deseja encerrar a atividade ${activityData.atividadeSelecionada}?`);
     if (confirmation) {
         stopTimer();
-
         
-        activityData.diaTermino = new Date().toLocaleDateString();
-        activityData.horaTermino = new Date().toLocaleTimeString();
-        activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
+        const finalData = {
+            ...activityData,
+            diaTermino: new Date().toLocaleDateString(),
+            horaTermino: new Date().toLocaleTimeString(),
+            tempoConclusao: document.getElementById("timerDisplay").textContent
+        };
 
-        console.log('Dados completos antes de salvar:', activityData);
+        console.log('Dados completos antes de salvar:', finalData);
 
         fetch('/saveActivity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(activityData)
+            body: JSON.stringify(finalData)
         })
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
+            console.log('Response status:', response.status);
+            return response.json().then(data => {
+                if (!response.ok) {
+                    throw new Error(data.error || 'Erro no servidor');
+                }
+                return data;
+            });
         })
         .then(data => {
-            const savedActivity = activityData.atividadeSelecionada;
+            console.log('Resposta do servidor:', data);
+            const savedActivity = finalData.atividadeSelecionada;
             resetTimer();
             document.getElementById('selectedActivity').textContent = '';
             activityData = {};
             alert(`Atividade ${savedActivity} finalizada e salva com sucesso!`);
         })
         .catch(error => {
-            console.error('Erro ao salvar:', error);
-            alert('Erro ao salvar a atividade. Por favor, tente novamente.');
+            console.error('Detalhes do erro:', error);
+            alert(`Erro ao salvar: ${error.message}`);
         });
     }
 }
