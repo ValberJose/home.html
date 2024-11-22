@@ -915,18 +915,21 @@ function finalizeActivity() {
         fetch('/saveActivity', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(finalData)
         })
         .then(response => {
-            console.log('Response status:', response.status);
-            return response.json().then(data => {
-                if (!response.ok) {
-                    throw new Error(data.error || 'Erro no servidor');
-                }
-                return data;
-            });
+            if (response.headers.get('content-type')?.includes('application/json')) {
+                return response.json().then(data => {
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Erro no servidor');
+                    }
+                    return data;
+                });
+            }
+            throw new Error('Resposta inválida do servidor');
         })
         .then(data => {
             console.log('Resposta do servidor:', data);
@@ -942,6 +945,7 @@ function finalizeActivity() {
         });
     }
 }
+
         function pauseTimer() {
             console.log('Função pauseTimer chamada');
 
