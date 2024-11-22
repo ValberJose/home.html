@@ -896,7 +896,7 @@ function finalizeActivity() {
             empresaNome: activityData.empresaNome,  // Ajustado para corresponder ao backend
             codigo: activityData.codigo,
             tributo: activityData.tributo,
-            atividadeSelecionada: activityData.tarefa, // Ajustado para corresponder ao backend
+            atividadeSelecionada: document.getElementById('selectedActivity').textContent, // Ajustado para corresponder ao backend
             diaInicio: now.toISOString().split('T')[0],  // Ajustado para corresponder ao backend
             horaInicio: now.toTimeString().split(' ')[0],  // Ajustado para corresponder ao backend
             diaTermino: now.toISOString().split('T')[0],  // Ajustado para corresponder ao backend
