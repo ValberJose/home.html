@@ -428,8 +428,12 @@ def save_activity():
     conn = None
     try:
         conn = get_db_connection()
+        if conn is None:
+            logging.error("Falha ao conectar ao banco de dados.")
+            return jsonify(message="Erro na conexão com o banco de dados."), 500
+
         with conn.cursor() as cur:
-            cur.execute("""
+            cur.execute(""" 
                 INSERT INTO tempo_atividade (
                     categoria, ambito, empresa_nome, codigo, tributo,
                     atividade_selecionada, dia_inicio, hora_inicio,
@@ -440,6 +444,7 @@ def save_activity():
                 atividade_selecionada, dia_inicio, hora_inicio,
                 dia_termino, hora_termino, tempo_conclusao, responsavel
             ))
+
         conn.commit()
         logging.debug("Atividade salva com sucesso!")
         return jsonify(message="Atividade salva com sucesso!"), 200
