@@ -368,10 +368,11 @@ def reset_password():
 # Função para validar datas
 def validate_date(date_string):
     try:
-        datetime.strptime(date_string, '%Y-%m-%d')
+        datetime.strptime(date_string, '%Y-%m-%d')  # Remove datetime.datetime
         return True
     except ValueError:
         return False
+
 
 
 def validate_date(date_string):
