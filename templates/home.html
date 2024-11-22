@@ -883,37 +883,35 @@
         }
 
 
-        function finalizeActivity() {
-            const confirmation = confirm(`Deseja encerrar a atividade?`);
-            if (confirmation) {
-                stopTimer();
-                activityData.diaTermino = new Date().toLocaleDateString();
-                activityData.horaTermino = new Date().toLocaleTimeString();
-                activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
+function finalizeActivity() {
+    const confirmation = confirm(`Deseja encerrar a atividade?`);
+    if (confirmation) {
+        stopTimer();
+        activityData.diaTermino = new Date().toLocaleDateString();
+        activityData.horaTermino = new Date().toLocaleTimeString();
+        activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
 
-                console.log('Atividade encerrada:', activityData);
-
-                fetch('/saveActivity', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(activityData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Resposta do servidor:', data);
-                    resetTimer();
-                    document.getElementById('selectedActivity').textContent = '';
-                    alert(data.message);
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
-
-                alert(`Atividade ${activityData.atividadeSelecionada} finalizada!`);
-            }
-        }
+        fetch('/saveActivity', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(activityData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Resposta do servidor:', data);
+            const currentActivity = activityData.atividadeSelecionada;
+            resetTimer();
+            document.getElementById('selectedActivity').textContent = '';
+            alert(data.message);
+            alert(`Atividade ${currentActivity} finalizada!`);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+    }
+}
 
 
 
