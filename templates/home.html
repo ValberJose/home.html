@@ -870,35 +870,45 @@
             const confirmation = confirm(`Deseja iniciar a atividade ${activity}?`);
             if (confirmation) {
                 startTimer();
-                alert(`Atividade ${activity} iniciada!`);
+
+
+                activityData = {
+                    atividadeSelecionada: activity,
+                    categoria: activityData.categoria || '-',
+                    ambito: activityData.ambito || '-',
+                    empresaNome: activityData.empresaNome || '-',
+                    codigo: activityData.codigo || '-',
+                    tributo: activityData.tributo || '-',
+                    diaInicio: new Date().toLocaleDateString(),
+                    horaInicio: new Date().toLocaleTimeString(),
+                    responsavel: '{{ username }}'
+                };
 
                 document.getElementById('selectedActivity').textContent = activity;
-                activityData.atividadeSelecionada = activity;
-                activityData.diaInicio = new Date().toLocaleDateString();
-                activityData.horaInicio = new Date().toLocaleTimeString();
-                activityData.responsavel = '{{ username }}';
-
-                console.log('Atividade iniciada:', activityData);
+                console.log('Atividade iniciada com dados completos:', activityData);
+                alert(`Atividade ${activity} iniciada!`);
             }
-        }
-
+}
 
 function finalizeActivity() {
-    console.log('Estado de activityData ao finalizar:', activityData);
+    console.log('Estado atual de activityData:', activityData);
 
     if (!activityData.atividadeSelecionada) {
-        alert('Nenhuma atividade está em andamento para finalizar.');
+        console.log('Tentativa de finalizar sem atividade ativa');
+        alert('Selecione uma atividade antes de finalizar.');
         return;
     }
 
     const confirmation = confirm(`Deseja encerrar a atividade ${activityData.atividadeSelecionada}?`);
     if (confirmation) {
         stopTimer();
+
+        
         activityData.diaTermino = new Date().toLocaleDateString();
         activityData.horaTermino = new Date().toLocaleTimeString();
         activityData.tempoConclusao = document.getElementById("timerDisplay").textContent;
 
-        console.log('Dados da atividade antes de salvar:', activityData);
+        console.log('Dados completos antes de salvar:', activityData);
 
         fetch('/saveActivity', {
             method: 'POST',
@@ -914,18 +924,18 @@ function finalizeActivity() {
             return response.json();
         })
         .then(data => {
-            alert(`Atividade ${activityData.atividadeSelecionada} finalizada e salva com sucesso!`);
+            const savedActivity = activityData.atividadeSelecionada;
             resetTimer();
             document.getElementById('selectedActivity').textContent = '';
-            activityData = {}; // Limpa os dados após salvar
+            activityData = {};
+            alert(`Atividade ${savedActivity} finalizada e salva com sucesso!`);
         })
         .catch(error => {
+            console.error('Erro ao salvar:', error);
             alert('Erro ao salvar a atividade. Por favor, tente novamente.');
-            console.error('Erro:', error);
         });
     }
 }
-
         function pauseTimer() {
             console.log('Função pauseTimer chamada');
 
