@@ -16,6 +16,7 @@ from psycopg2.extras import DictCursor
 from urllib.parse import urlparse
 from datetime import datetime
 
+
 logging.basicConfig(level=logging.DEBUG)
 load_dotenv()
 app = Flask(__name__)
@@ -368,23 +369,15 @@ def reset_password():
 # Função para validar datas
 def validate_date(date_string):
     try:
-        datetime.strptime(date_string, '%Y-%m-%d')  # Remove datetime.datetime
+        datetime.strptime(date_string, '%Y-%m-%d')
         return True
     except ValueError:
         return False
 
-
-
-def validate_date(date_string):
-    try:
-        datetime.datetime.strptime(date_string, '%Y-%m-%d')
-        return True
-    except ValueError:
-        return False
 
 def validate_time(time_string):
     try:
-        datetime.datetime.strptime(time_string, '%H:%M:%S')
+        datetime.strptime(time_string, '%H:%M:%S')
         return True
     except ValueError:
         return False
