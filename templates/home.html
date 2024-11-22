@@ -943,55 +943,56 @@ function finalizeActivity() {
 
 
 
-        function pauseTimer() {
-            console.log('Função pauseTimer chamada');
+function pauseTimer() {
+    console.log('Função pauseTimer chamada');
 
-            if (timer) { // Check if timer exists instead of isRunning
-                console.log('Cronômetro está em execução, pausando...');
-                clearInterval(timer);
-                pauseStartTime = new Date();
+    if (timer) { // Check if timer exists instead of isRunning
+        console.log('Cronômetro está em execução, pausando...');
+        clearInterval(timer);
+        pauseStartTime = new Date();
 
-                let justificativa = prompt("Digite a justificativa para a pausa:");
+        let justificativa = prompt("Digite a justificativa para a pausa:");
 
-                if (justificativa) {
-                    console.log('Justificativa inserida:', justificativa);
+        if (justificativa) {
+            console.log('Justificativa inserida:', justificativa);
 
-                    const data = {
-                        atividade: activityData.atividadeSelecionada,
-                        Âmbito: activityData.ambito,
-                        'Empresa Nome': activityData.empresaNome,
-                        Código: activityData.codigo,
-                        Tributo: activityData.tributo,
-                        diaInicio: activityData.diaInicio,
-                        horaInicio: activityData.horaInicio,
-                        horaInicioDaPausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
-                        tempoDeInicio: document.getElementById('timerDisplay').textContent,
-                        responsavel: activityData.responsavel,
-                        justificativa: justificativa
-                    };
+        const data = {
+            categoria: activityData.categoria,
+            ambito: activityData.ambito,
+            empresa_nome: activityData.empresaNome,
+            codigo: activityData.codigo,
+            tributo: activityData.tributo,
+            atividade: activityData.atividadeSelecionada,
+            dia_inicio: activityData.diaInicio,
+            hora_inicio: activityData.horaInicio,
+            hora_inicio_pausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
+            tempo_inicio: document.getElementById('timerDisplay').textContent,
+            responsavel: activityData.responsavel,
+            justificativa: justificativa
+        };
 
-                    fetch('/saveJustificativa', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                    })
-                    .catch((error) => {
-                        console.error('Erro:', error);
-                    });
-                } else {
-                    console.log('Justificativa não fornecida');
-                    startTimer(); // Resume timer if no justification provided
-                }
-            } else {
-                console.log('Cronômetro não está em execução');
-            }
+            fetch('/saveJustificativa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+            });
+        } else {
+            console.log('Justificativa não fornecida');
+            startTimer(); // Resume timer if no justification provided
         }
+    } else {
+        console.log('Cronômetro não está em execução');
+    }
+}
 
         function showSubmenu(element) {
             const submenu = element.querySelector('.submenu');
