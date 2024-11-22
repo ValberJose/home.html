@@ -963,7 +963,7 @@ function pauseTimer() {
             codigo: activityData.codigo,
             tributo: activityData.tributo,
             atividade: activityData.atividadeSelecionada,
-            dia_inicio: activityData.diaInicio,
+            dia_inicio: formatDateForServer(activityData.diaInicio),
             hora_inicio: activityData.horaInicio,
             hora_inicio_pausa: `${String(pauseStartTime.getHours()).padStart(2, '0')}:${String(pauseStartTime.getMinutes()).padStart(2, '0')}:${String(pauseStartTime.getSeconds()).padStart(2, '0')}`,
             tempo_inicio: document.getElementById('timerDisplay').textContent,
