@@ -890,9 +890,12 @@
             }
 }
 
+function formatDateForServer(dateStr) {
+    const [day, month, year] = dateStr.split('/');
+    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+}
+
 function finalizeActivity() {
-    console.log('Estado atual de activityData:', activityData);
-    
     if (!activityData.atividadeSelecionada) {
         console.log('Tentativa de finalizar sem atividade ativa');
         alert('Selecione uma atividade antes de finalizar.');
@@ -905,7 +908,8 @@ function finalizeActivity() {
         
         const finalData = {
             ...activityData,
-            diaTermino: new Date().toLocaleDateString(),
+            diaInicio: formatDateForServer(activityData.diaInicio),
+            diaTermino: formatDateForServer(new Date().toLocaleDateString()),
             horaTermino: new Date().toLocaleTimeString(),
             tempoConclusao: document.getElementById("timerDisplay").textContent
         };
@@ -945,6 +949,7 @@ function finalizeActivity() {
         });
     }
 }
+
 
         function pauseTimer() {
             console.log('Função pauseTimer chamada');
