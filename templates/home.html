@@ -906,11 +906,18 @@ function finalizeActivity() {
         stopTimer();
 
         const finalData = {
-            ...activityData,
+            categoria: activityData.categoria,
+            ambito: activityData.ambito,
+            empresaNome: activityData.empresaNome,
+            codigo: activityData.codigo,
+            tributo: activityData.tributo,
+            atividadeSelecionada: activityData.atividadeSelecionada,
             diaInicio: formatDateForServer(activityData.diaInicio),
+            horaInicio: activityData.horaInicio,
             diaTermino: formatDateForServer(new Date().toLocaleDateString()),
             horaTermino: new Date().toLocaleTimeString(),
-            tempoConclusao: document.getElementById("timerDisplay").textContent
+            tempoConclusao: document.getElementById("timerDisplay").textContent,
+            responsavel: activityData.responsavel
         };
 
         fetch('/saveActivity', {
@@ -933,7 +940,7 @@ function finalizeActivity() {
     }
 }
 
-}
+
 
 
         function pauseTimer() {
