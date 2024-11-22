@@ -873,7 +873,7 @@
                 alert(`Atividade ${activity} iniciada!`);
 
                 document.getElementById('selectedActivity').textContent = activity;
-                activityData.atividadeSelecionada = activity;
+                activityData.atividadeSelecionada = activity; // Atualiza corretamente
                 activityData.diaInicio = new Date().toLocaleDateString();
                 activityData.horaInicio = new Date().toLocaleTimeString();
                 activityData.responsavel = '{{ username }}';
@@ -903,7 +903,7 @@ function finalizeActivity() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(finalActivityData)
+            body: JSON.stringify(activityData) // Use o objeto correto aqui
         })
         .then(response => {
             if (!response.ok) {
@@ -912,10 +912,10 @@ function finalizeActivity() {
             return response.json();
         })
         .then(data => {
-            alert(`Atividade ${finalActivityData.atividadeSelecionada} finalizada e salva com sucesso!`);
+            alert(`Atividade ${activityData.atividadeSelecionada} finalizada e salva com sucesso!`);
             resetTimer();
             document.getElementById('selectedActivity').textContent = '';
-            activityData = {}; // Clear activity data after successful save
+            activityData = {}; // Limpa os dados após salvar
         })
         .catch(error => {
             alert('Erro ao salvar a atividade. Por favor, tente novamente.');
