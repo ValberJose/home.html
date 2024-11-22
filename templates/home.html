@@ -873,7 +873,7 @@
                 alert(`Atividade ${activity} iniciada!`);
 
                 document.getElementById('selectedActivity').textContent = activity;
-                activityData.atividadeSelecionada = activity; // Atualiza corretamente
+                activityData.atividadeSelecionada = activity;
                 activityData.diaInicio = new Date().toLocaleDateString();
                 activityData.horaInicio = new Date().toLocaleTimeString();
                 activityData.responsavel = '{{ username }}';
@@ -884,6 +884,8 @@
 
 
 function finalizeActivity() {
+    console.log('Estado de activityData ao finalizar:', activityData);
+
     if (!activityData.atividadeSelecionada) {
         alert('Nenhuma atividade está em andamento para finalizar.');
         return;
@@ -903,7 +905,7 @@ function finalizeActivity() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(activityData) // Use o objeto correto aqui
+            body: JSON.stringify(activityData)
         })
         .then(response => {
             if (!response.ok) {
@@ -923,7 +925,6 @@ function finalizeActivity() {
         });
     }
 }
-
 
         function pauseTimer() {
             console.log('Função pauseTimer chamada');
