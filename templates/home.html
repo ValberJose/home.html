@@ -894,6 +894,12 @@ function formatDateForServer(dateStr) {
     const [day, month, year] = dateStr.split('/');
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 }
+def validate_date(date_string):
+    try:
+        datetime.strptime(date_string, '%Y-%m-%d')  # Remove datetime.datetime
+        return True
+    except ValueError:
+        return False
 
 function finalizeActivity() {
     if (!activityData.atividadeSelecionada) {
@@ -905,7 +911,7 @@ function finalizeActivity() {
     const confirmation = confirm(`Deseja encerrar a atividade ${activityData.atividadeSelecionada}?`);
     if (confirmation) {
         stopTimer();
-        
+
         const finalData = {
             ...activityData,
             diaInicio: formatDateForServer(activityData.diaInicio),
