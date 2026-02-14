@@ -10,7 +10,7 @@ cffi==1.17.1
 charset-normalizer==3.4.0
 click==8.1.7
 colorama==0.4.6
-cryptography==43.0.3
+cryptography==46.0.5
 datetime==5.4
 dparse==0.6.4
 et-xmlfile==1.1.0
